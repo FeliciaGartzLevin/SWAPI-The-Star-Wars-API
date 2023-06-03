@@ -1,6 +1,6 @@
 import Container from 'react-bootstrap/Container'
 import { Routes, Route } from 'react-router-dom'
-// import Navigation from './components/Navigation'
+import Navigation from './components/Navigation'
 import NotFound from './pages/NotFound'
 import HomePage from './pages/HomePage'
 // import SearchPage from './pages/SearchPage'
@@ -10,7 +10,7 @@ const App = () => {
 
 	return (
 		<div id="App">
-			{/* <Navigation /> */}
+			<Navigation />
 
 			<Container className='py-3'>
 				<Routes>

@@ -1,1 +1,47 @@
 @import "bootstrap/scss/bootstrap";
+@import "./styles.scss";
+@import './HomePage.scss';
+@import './Navbar.scss';
+
+* {
+	font-family: $font-default;
+}
+
+/* body,
+html {
+} */
+
+a {
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+}
+
+#App {
+	height: 100vh;
+	width: 100%;
+
+	background: no-repeat center center fixed;
+	background-size: cover;
+
+	// background for less than large screens:
+	@media screen and (max-width: 991.9px) {
+		background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url('../img/star-wars-city-small.jpg');
+
+	}
+
+	// background for large screens:
+	background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+	url('../img/star-wars-city-large.jpg');
+
+}
+
+
+.info-box {
+	background-color: $info-box-beige;
+	border: solid 1px black;
+	color: $text-white;
+	padding: 2rem;
+	border-radius: 15px;
+	text-align: center;
+}

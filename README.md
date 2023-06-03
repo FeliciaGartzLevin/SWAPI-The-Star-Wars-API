@@ -17,7 +17,6 @@ Såväl PDF av mina slides och en export av min Postman-collection för API:et f
 ### Hygienkrav
 Nedan hygienkrav ska vara uppfyllda oavsett betygsnivå.
 
-
 - Använda React (med useState, useEffect och Fetch/axios) och React Router
 - Kommunikationen med API:et ska finnas i ett eget mellanlager (alltså en ”service”, där själva Fetch/axios-kommunikationen sker)
 - Komponentbaserad
@@ -27,7 +26,6 @@ Nedan hygienkrav ska vara uppfyllda oavsett betygsnivå.
 - All källkod vara korrekt indenterad (så klart!)
 - Deploy:ad till Netlify/GitHub Pages (TBD, pending att jag får rätt på det)
 - Vara skriven i TypeScript
-
 
 ### Kravspecifikation
 - Kunna bläddra bland filmer och personer (inkl. enkel paginering med föregående/nästa-knappar).

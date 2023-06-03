@@ -1,8 +1,18 @@
-import React from 'react'
+import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+
 
 function HomePage() {
 	return (
-		<div>HomePage</div>
+		<div id='HomePage'>
+			<h1 className="info-box">Welcome to The Star Wars API</h1>
+
+			<Link to={"/"}>
+				<Button className='info-box button'>
+					Search
+				</Button>
+			</Link>
+		</div>
 	)
 }
 
