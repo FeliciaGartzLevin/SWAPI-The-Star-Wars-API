@@ -7,7 +7,7 @@ const NotFound = () => {
 			<h1>Page not found</h1>
 
 			<Link to="/">
-				<Button variant="primary">🏠¨<i className="fa-sharp fa-solid fa-house"></i></Button>
+				<Button variant="primary">🏠<i className="fa-sharp fa-solid fa-house"></i></Button>
 			</Link>
 		</>
 	)
