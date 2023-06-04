@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { Film } from '../types'
+import { Film, Films } from '../types'
 
-const BASE_URL = 'https://swapi.thehiveresistance.com/api/'
+const BASE_URL = 'https://swapi.thehiveresistance.com/api'
 
 /**
  * Generic get request
@@ -15,7 +15,7 @@ export const get = async <T>(endpoint: string) => {
  * Get all films
  */
 export const getFilms = async () => {
-	return get<Film[]>(`/films`)
+	return get<Films>('/films')
 }
 
 /**
