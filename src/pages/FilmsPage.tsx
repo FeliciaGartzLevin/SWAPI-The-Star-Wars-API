@@ -5,8 +5,8 @@ import { Alert, ListGroup } from 'react-bootstrap'
 import { Film, Films } from '../types'
 import ResourceListItem from '../components/ResourceListItem.tsx'
 import PageNavigation from '../components/PageNavigation.tsx'
-import StormtrooperNo from '../assets/img/stormtrooper-no.gif'
 import Error from '../components/Error.tsx'
+import Loading from '../components/Loading.tsx'
 
 const FilmsPage = () => {
 	const [films, setFilms] = useState<Films | null>(null)
@@ -48,9 +48,6 @@ const FilmsPage = () => {
 		<div id='FilmsPage' className="ResourcesPage info-box">
 
 			<h1>Films</h1>
-			{/*
-			{loading && } */}
-
 
 			{error &&
 				<Error
@@ -58,9 +55,14 @@ const FilmsPage = () => {
 				/>
 			}
 
+			{loading &&
+				<Loading
+				/>
+			}
+
 			{films !== null && films.data.length > 0 && (
 				<>
-					<ListGroup> { }
+					<ListGroup>
 						{films.data.map(film => (
 							<ResourceListItem
 								key={film.id}
