@@ -9,13 +9,13 @@ type IProps = {
 
 const PageNavigation: React.FC<IProps> = ({ currentPage, maxPage, pageSwitcher }) => {
 	return (
-		<div id='PageNavigation' className="d-flex justify-content-between align-items-center my-2 mt-4">
+		<div id='PageNavigation' className="d-flex justify-content-between align-items-center my-2 mt-4 ">
 			<div className="prev">
 				<Button
 					disabled={currentPage === 1}
 					onClick={() => pageSwitcher(-1)}
 				>
-					Previous Page
+					&laquo; Previous
 				</Button>
 			</div>
 
@@ -27,7 +27,7 @@ const PageNavigation: React.FC<IProps> = ({ currentPage, maxPage, pageSwitcher }
 					onClick={() => pageSwitcher(+1)}
 					variant='primary'
 				>
-					Next Page
+					Next &raquo;
 				</Button>
 			</div>
 		</div>

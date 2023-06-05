@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import * as SWAPI from '../services/SWAPI.ts'
-import { ListGroup } from 'react-bootstrap'
+import { Alert, ListGroup } from 'react-bootstrap'
 import { Film, Films } from '../types'
 import ResourceListItem from '../components/ResourceListItem.tsx'
 import PageNavigation from '../components/PageNavigation.tsx'
+import StormtrooperNo from '../assets/img/stormtrooper-no.gif'
+import Error from '../components/Error.tsx'
 
 const FilmsPage = () => {
 	const [films, setFilms] = useState<Films | null>(null)
@@ -14,6 +16,7 @@ const FilmsPage = () => {
 
 	// Get films from the API
 	const getFilms = async () => {
+		setFilms(null)
 		setLoading(true)
 		setError(null)
 
@@ -45,10 +48,19 @@ const FilmsPage = () => {
 		<div id='FilmsPage' className="ResourcesPage info-box">
 
 			<h1>Films</h1>
+			{/*
+			{loading && } */}
+
+
+			{error &&
+				<Error
+					errorMsg={error}
+				/>
+			}
 
 			{films !== null && films.data.length > 0 && (
 				<>
-					<ListGroup> {/* d-lg-inline-block  */}
+					<ListGroup> { }
 						{films.data.map(film => (
 							<ResourceListItem
 								key={film.id}
