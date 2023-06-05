@@ -1,0 +1,23 @@
+#PageNavigation {
+
+	button {
+		border: 1px black solid;
+		background-color: $info-box-beige;
+		font-family: $font-default;
+		border-radius: 35px;
+
+		&:hover {
+			background-color: $button-hover-color;
+			box-shadow: 0.2em 0.2em 40px rgb(255, 255, 255);
+		}
+
+		&:disabled {
+			background-color: $button-disabled-color;
+			border: none;
+		}
+
+	}
+
+
+
+}

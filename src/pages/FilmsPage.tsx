@@ -4,11 +4,13 @@ import * as SWAPI from '../services/SWAPI.ts'
 import { ListGroup } from 'react-bootstrap'
 import { Film, Films } from '../types'
 import ResourceListItem from '../components/ResourceListItem.tsx'
+import PageNavigation from '../components/PageNavigation.tsx'
 
 const FilmsPage = () => {
 	const [films, setFilms] = useState<Films | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
+	const [page, setPage] = useState(1)
 
 	// Get films from the API
 	const getFilms = async () => {
@@ -34,6 +36,11 @@ const FilmsPage = () => {
 		getFilms()
 	}, [])
 
+	// handle clicking next or prev page
+	const pageSwitcher = (directionNumber: number) => {
+		setPage(prevValue => prevValue + directionNumber)
+	}
+
 	return (
 		<div id='FilmsPage' className="ResourcesPage info-box">
 
@@ -51,8 +58,11 @@ const FilmsPage = () => {
 						))}
 					</ListGroup>
 
-					{/* kan säkert göra en eller flera komponenter av sidräkningen också */}
-					<p className='mt-3'>Page {films.current_page}</p>
+					<PageNavigation
+						currentPage={page}
+						maxPage={films.last_page}
+						pageSwitcher={pageSwitcher}
+					/>
 				</>
 			)}
 		</div>
