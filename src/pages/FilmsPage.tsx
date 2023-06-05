@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import * as SWAPI from '../services/SWAPI.ts'
 import { ListGroup } from 'react-bootstrap'
 import { Film, Films } from '../types'
+import ResourceListItem from '../components/ResourceListItem.tsx'
 
 const FilmsPage = () => {
 	const [films, setFilms] = useState<Films | null>(null)
@@ -34,25 +35,23 @@ const FilmsPage = () => {
 	}, [])
 
 	return (
-		<div className="info-box">
+		<div id='FilmsPage' className="ResourcesPage info-box">
 
-			<h1>FilmsPage</h1>
+			<h1>Films</h1>
 
-			{films !== null && (
+			{films !== null && films.data.length > 0 && (
 				<>
-					<ListGroup>
+					<ListGroup> {/* d-lg-inline-block  */}
 						{films.data.map(film => (
-							<ListGroup.Item
-								action
-								as={Link}
+							<ResourceListItem
 								key={film.id}
-								to={`/films/${film.id}`}
-							>
-								{film.title}
-							</ListGroup.Item>
+								resourceTitle={film.title}
+								resourceId={String(film.id)}
+								endpoint='films' />
 						))}
 					</ListGroup>
 
+					{/* kan säkert göra en eller flera komponenter av sidräkningen också */}
 					<p className='mt-3'>Page {films.current_page}</p>
 				</>
 			)}

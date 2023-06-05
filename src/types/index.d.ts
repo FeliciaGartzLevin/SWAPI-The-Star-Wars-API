@@ -1,9 +1,4 @@
 
-interface ResourceContent {
-	id: number,
-	name: string,
-}
-
 export interface Film {
 	id: number,
 	title: string,
@@ -14,11 +9,11 @@ export interface Film {
 	release_date: string,
 	created: string,
 	edited: string,
-	characters: ResourceContent[],
-	planets: ResourceContent[],
-	starships: ResourceContent[],
-	vehicles: ResourceContent[],
-	species: ResourceContent[],
+	characters_count: number,
+	planets_count: number,
+	starships_count: number,
+	vehicles_count: number,
+	species_count: number,
 }
 
 export interface Films {

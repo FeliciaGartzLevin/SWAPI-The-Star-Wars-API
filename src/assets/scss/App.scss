@@ -2,7 +2,7 @@
 @import "./styles.scss";
 @import './HomePage.scss';
 @import './Navbar.scss';
-@import './ResourcePage.scss';
+@import './ResourcesPage.scss';
 
 * {
 	font-family: $font-default;
@@ -42,7 +42,15 @@ a {
 	background-color: $info-box-beige;
 	border: solid 1px black;
 	color: $text-white;
-	padding: 2rem;
+	padding: 40px;
 	border-radius: 15px;
 	text-align: center;
+
+	margin: 0 auto;
+
+	@media screen and (min-width: 768px) {
+		max-width: 60%;
+		display: block;
+	}
+
 }

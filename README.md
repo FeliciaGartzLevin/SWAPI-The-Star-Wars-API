@@ -4,6 +4,12 @@
 Länk till tänkt design i Figma/
 Link to intended design in Figma: https://www.figma.com/file/I5OLfG5HkqEP4JwR9Ol923/SWAPI?type=design&t=T0Q7UJezwatn6Gbj-1 
 
+### Notes to self:
+Trello-länk: https://trello.com/invite/b/VjzN7T7P/ATTI3f52b7a4a3998128d836ca65aa309e77D9FC4953/swapi
+
+Länk till detta projekts GH-repo:
+https://github.com/the-hive-resistance/fed22-js2-uppgift-1-FeliciaGartzLevin
+
 ## Beskrivning av uppgiften: 
 BB-8 har gett dig i uppdrag att göra en StarWars-encyklopedi för att han ska slippa vara ett rullande uppslagsverk och kunna fokusera på viktigare saker, som att rulla omkring och inte svara på dumma frågor hela tiden.
 Han vill att hans gäng ska lätt kunna hitta information om allt i Star Wars-universumet. Ditt viktiga uppdrag är att skapa denna encyklopedi och därmed hjälpa bringa fred till galaxen!

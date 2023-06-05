@@ -1,12 +1,27 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { ListGroup } from 'react-bootstrap'
+import { Film } from '../types'
 
-const ResourceList = () => {
+interface IProps {
+	resourceTitle: string
+	resourceId: string
+	endpoint: string
+}
+
+const ResourceListItem: React.FC<IProps> = ({ resourceTitle, resourceId, endpoint }) => {
 	return (
-		<div>ResourceList</div>
+		<ListGroup.Item
+			action
+			as={Link}
+			to={`/${endpoint}/${resourceId}`}
+		>
+			{resourceTitle}
+		</ListGroup.Item>
 	)
 }
 
-export default ResourceList
+export default ResourceListItem
 
 
 /*
