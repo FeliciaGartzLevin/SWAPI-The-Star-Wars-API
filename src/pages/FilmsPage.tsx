@@ -7,10 +7,11 @@ import PageNavigation from '../components/PageNavigation.tsx'
 import Error from '../components/Error.tsx'
 import Loading from '../components/Loading.tsx'
 import SearchForm from '../components/SearchForm.tsx'
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../components/ShowAllResourcesBtn.tsx'
 
 const FilmsPage = () => {
+	const [resourceName, setResourceName] = useState('films')
 	const [films, setFilms] = useState<Films | null>(null)
 	const [totalFilms, setTotalFilms] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)
@@ -31,13 +32,13 @@ const FilmsPage = () => {
 	}
 
 	// Get films from the API
-	const getFilms = async () => {
+	const getFilms = async (resourceName: string, page: number) => {
 		// reset states when search is initialized
 		resetValues()
 
 		try {
 			// call API
-			const res = await SWAPI.getFilms()
+			const res = await SWAPI.getResources(resourceName, page)
 
 			// set film-state to the recieved data
 			setFilms(res)
@@ -61,7 +62,7 @@ const FilmsPage = () => {
 		setSearchParams({ query: queryInput })
 
 		try {
-			const data = await SWAPI.searchFilms(queryInput, page)
+			const data = await SWAPI.searchResource(queryInput, page)
 			setFilms(data)
 
 		} catch (error: any) {
@@ -74,7 +75,7 @@ const FilmsPage = () => {
 
 	// fetch films when page is being visited
 	useEffect(() => {
-		getFilms()
+		getFilms(resourceName, page)
 	}, [])
 
 	// handle clicking next or prev page
@@ -108,6 +109,8 @@ const FilmsPage = () => {
 				< totalFilms)
 				&& (
 					<ShowAllResourcesBtn
+						resourceName={resourceName}
+						page={page}
 						seeAll={getFilms}
 					/>
 				)

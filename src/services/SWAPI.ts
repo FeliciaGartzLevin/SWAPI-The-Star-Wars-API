@@ -12,18 +12,25 @@ export const get = async <T>(endpoint: string) => {
 }
 
 /**
+ * Kom ihåg att lägga till |Planets|People etc i
+ * get<Films> när jag lägger till fler resources!!!
+ *
+ */
+
+
+/**
  * Get all films
  */
-export const getFilms = async () => {
-	return get<Films>('/films')
+export const getResources = async (resource: string, page: number) => {
+	return get<Films>(`/${resource}/?page=${page}`)
 }
 
 /**
  * Get a single film
  */
 
-export const getFilm = (id: string) => {
-	return get<Film>(`/films/${id}`)
+export const getResource = (resource: string, id: string) => {
+	return get<Film>(`/${resource}/${id}`)
 }
 
 // generalisera här och skicka in `resources` ist för `films`?
@@ -34,6 +41,6 @@ export const getFilm = (id: string) => {
 /**
  * Search among films
  */
-export const searchFilms = (query: string, page: number) => {
+export const searchResource = (query: string, page: number) => {
 	return get<Films>(`/films/?search=${query}&page=${page}`)
 }
