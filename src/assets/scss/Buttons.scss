@@ -1,0 +1,52 @@
+#PageNavigation,
+#SearchForm {
+
+	button {
+		border: 1px black solid;
+		background-color: $button-beige;
+		font-family: $font-default;
+
+		&:hover {
+			background-color: $button-hover-color;
+			box-shadow: 0.2em 0.2em 40px rgb(255, 255, 255);
+		}
+
+		&:disabled {
+			background-color: $button-disabled-color;
+			border: none;
+		}
+
+	}
+
+	@media screen and (min-width: 991.9px) {
+		margin: 0 auto;
+		max-width: 60%;
+	}
+
+}
+
+#PageNavigation {
+	button {
+		border-radius: 35px;
+	}
+}
+
+#SearchForm {
+
+	.input-group {
+		input {
+
+			border: 1px solid black;
+			border-radius: 35px 0 0 35px;
+
+			&:focus {
+				border: 3px solid rgba(118, 104, 90, 1);
+			}
+		}
+
+		button {
+			border: 1px solid black;
+			border-radius: 0 35px 35px 0;
+		}
+	}
+}

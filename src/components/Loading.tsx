@@ -6,7 +6,7 @@ const Error = () => {
 		<>
 			<img
 				src={BabyYoda}
-				alt="Baby Yoda you greets"
+				alt="Baby Yoda greets you"
 				className='img-fluid'
 			/>
 			<Alert

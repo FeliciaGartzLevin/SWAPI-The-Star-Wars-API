@@ -22,6 +22,14 @@ export const getFilms = async () => {
  * Get a single film
  */
 
-export const getFilm = (id: number) => {
+export const getFilm = (id: string) => {
 	return get<Film>(`/films/${id}`)
+}
+
+
+/**
+ * Search among films
+ */
+export const searchFilms = (resource: string) => {
+	return get<Film>(`/films/?search=${resource}`)
 }

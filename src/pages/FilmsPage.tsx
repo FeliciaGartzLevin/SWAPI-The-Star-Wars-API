@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import * as SWAPI from '../services/SWAPI.ts'
-import { Alert, ListGroup } from 'react-bootstrap'
-import { Film, Films } from '../types'
+import { ListGroup } from 'react-bootstrap'
+import { Films } from '../types'
 import ResourceListItem from '../components/ResourceListItem.tsx'
 import PageNavigation from '../components/PageNavigation.tsx'
 import Error from '../components/Error.tsx'
 import Loading from '../components/Loading.tsx'
+import SearchForm from '../components/SearchForm.tsx'
 
 const FilmsPage = () => {
 	const [films, setFilms] = useState<Films | null>(null)
@@ -59,6 +59,8 @@ const FilmsPage = () => {
 				<Loading
 				/>
 			}
+
+			<SearchForm />
 
 			{films !== null && films.data.length > 0 && (
 				<>
