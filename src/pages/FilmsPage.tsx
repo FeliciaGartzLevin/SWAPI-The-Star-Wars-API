@@ -42,7 +42,6 @@ const FilmsPage = () => {
 
 			// set film-state to the recieved data
 			setFilms(res)
-
 			setTotalFilms(res.data.length)
 
 
@@ -62,7 +61,7 @@ const FilmsPage = () => {
 		setSearchParams({ query: queryInput })
 
 		try {
-			const data = await SWAPI.searchResource(queryInput, page)
+			const data = await SWAPI.searchResource(resourceName, queryInput, page)
 			setFilms(data)
 
 		} catch (error: any) {
@@ -77,6 +76,12 @@ const FilmsPage = () => {
 	useEffect(() => {
 		getFilms(resourceName, page)
 	}, [])
+
+	/* 	useEffect(() => {
+			if (!query) return
+	
+			queryFilms(query, page)
+		}, [query]) */
 
 	// handle clicking next or prev page
 	const pageSwitcher = (directionNumber: number) => {

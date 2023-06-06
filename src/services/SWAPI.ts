@@ -41,6 +41,6 @@ export const getResource = (resource: string, id: string) => {
 /**
  * Search among films
  */
-export const searchResource = (query: string, page: number) => {
-	return get<Films>(`/films/?search=${query}&page=${page}`)
+export const searchResource = (resource: string, query: string, page: number) => {
+	return get<Films>(`/${resource}/?search=${query}&page=${page}`)
 }
