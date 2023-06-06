@@ -4,10 +4,10 @@ interface IProps {
 	// onAddTodo: (todo: Todo) => void <-----detta är gammal kod
 
 	// skicka in namn på hämtningsfunktion här:
-	// onSubmit: (queryInput) => void
+	onSubmit: (queryInput: string) => void
 }
 
-const SearchForm: React.FC<IProps> = ({ /* onSubmit */ }) => {
+const SearchForm: React.FC<IProps> = ({ onSubmit }) => {
 	const [queryInput, setQueryInput] = useState("")
 	const inputRef = useRef<HTMLInputElement>(null)
 
@@ -20,6 +20,7 @@ const SearchForm: React.FC<IProps> = ({ /* onSubmit */ }) => {
 		}
 
 		// här ska vi söka på input (e.target.value)
+		onSubmit(queryInput)
 
 		// hur göra med loading då det är en state i FilmsPage? Ska search ha sin egen loading och rendera <Loading/> componenten?
 		// nej. söket till APIt ska göras ute i films, jag bara kallar på sök-funktionen här inne.

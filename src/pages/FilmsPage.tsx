@@ -34,6 +34,26 @@ const FilmsPage = () => {
 		setLoading(false)
 	}
 
+	// query the API for film
+	const queryFilms = async (queryInput: string) => {
+		setFilms(null)
+		setLoading(true)
+		setError(null)
+
+		try {
+			const data = await SWAPI.searchFilms(queryInput)
+			setFilms(data)
+
+			console.log('Films:', films)
+
+		} catch (error: any) {
+			setError(error.message)
+
+		}
+		setLoading(false)
+
+	}
+
 	// fetch films when page is being visited
 	useEffect(() => {
 		getFilms()
@@ -60,7 +80,9 @@ const FilmsPage = () => {
 				/>
 			}
 
-			<SearchForm />
+			<SearchForm
+				onSubmit={queryFilms}
+			/>
 
 			{films !== null && films.data.length > 0 && (
 				<>
