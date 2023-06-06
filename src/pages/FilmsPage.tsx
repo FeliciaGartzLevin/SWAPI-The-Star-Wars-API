@@ -28,7 +28,6 @@ const FilmsPage = () => {
 		setLoading(true)
 		setError(null)
 		setPage(1)
-		setSearchParams()
 	}
 
 	// Get films from the API
@@ -44,7 +43,6 @@ const FilmsPage = () => {
 			setFilms(res)
 			setTotalFilms(res.data.length)
 
-
 		} catch (error: any) {
 			setError(error.message)
 		}
@@ -52,13 +50,15 @@ const FilmsPage = () => {
 		setLoading(false)
 	}
 
+	const getQueryInput = (queryInput: string) => {
+		// set input value as query in searchParams
+		setSearchParams({ query: queryInput })
+	}
+
 	// query the API for film
 	const queryFilms = async (queryInput: string) => {
 		// reset states when search is initialized
 		resetValues()
-
-		// set input value as query in searchParams
-		setSearchParams({ query: queryInput })
 
 		try {
 			const data = await SWAPI.searchResource(resourceName, queryInput, page)
@@ -77,11 +77,15 @@ const FilmsPage = () => {
 		getFilms(resourceName, page)
 	}, [])
 
-	/* 	useEffect(() => {
-			if (!query) return
-	
-			queryFilms(query, page)
-		}, [query]) */
+	// when submitting a searchQuery, setSearchParams({ query: queryInput })
+	// is being set, which rerenders the page bc query changes.
+	// Hence one can move back/forth in the search-history and queryFilms
+	// are then being called (explanation to self though it is hard to grasp)
+	useEffect(() => {
+		if (!query) return
+
+		queryFilms(query)
+	}, [query])
 
 	// handle clicking next or prev page
 	const pageSwitcher = (directionNumber: number) => {
@@ -105,7 +109,7 @@ const FilmsPage = () => {
 			}
 
 			<SearchForm
-				onSubmit={queryFilms}
+				onSubmit={getQueryInput}
 			/>
 
 			{(films !== null

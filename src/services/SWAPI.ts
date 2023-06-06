@@ -19,27 +19,22 @@ export const get = async <T>(endpoint: string) => {
 
 
 /**
- * Get all films
+ * Get all resources
  */
 export const getResources = async (resource: string, page: number) => {
 	return get<Films>(`/${resource}/?page=${page}`)
 }
 
 /**
- * Get a single film
+ * Get a single resource
  */
 
 export const getResource = (resource: string, id: string) => {
 	return get<Film>(`/${resource}/${id}`)
 }
 
-// generalisera här och skicka in `resources` ist för `films`?
-// eller går kanske inte med typescript. eller då får jag skapa en type
-// som antingen tar emot Films ELLER People ELLER Planets etc.
-// men då blir det störigt med att få förslag sen, det kommer väl inte funka då?
-
 /**
- * Search among films
+ * Search among resources
  */
 export const searchResource = (resource: string, query: string, page: number) => {
 	return get<Films>(`/${resource}/?search=${query}&page=${page}`)
