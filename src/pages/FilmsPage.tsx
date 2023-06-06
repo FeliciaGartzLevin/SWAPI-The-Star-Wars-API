@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react'
 import * as SWAPI from '../services/SWAPI.ts'
-import { Alert, ListGroup } from 'react-bootstrap'
+import { Alert, Button, ListGroup } from 'react-bootstrap'
 import { Films } from '../types'
 import ResourceListItem from '../components/ResourceListItem.tsx'
 import PageNavigation from '../components/PageNavigation.tsx'
 import Error from '../components/Error.tsx'
 import Loading from '../components/Loading.tsx'
 import SearchForm from '../components/SearchForm.tsx'
+import { Link } from 'react-router-dom'
+import ShowAllResourcesBtn from '../components/ShowAllResourcesBtn.tsx'
 
 const FilmsPage = () => {
 	const [films, setFilms] = useState<Films | null>(null)
+	const [totalFilms, setTotalFilms] = useState<Films | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [page, setPage] = useState(1)
@@ -27,6 +30,8 @@ const FilmsPage = () => {
 			// set film-state to the recieved data
 			setFilms(data)
 
+			setTotalFilms(data)
+
 		} catch (error: any) {
 			setError(error.message)
 		}
@@ -41,10 +46,8 @@ const FilmsPage = () => {
 		setError(null)
 
 		try {
-			const data = await SWAPI.searchFilms(queryInput)
+			const data = await SWAPI.searchFilms(queryInput, page)
 			setFilms(data)
-
-			console.log('Films:', films)
 
 		} catch (error: any) {
 			setError(error.message)
@@ -83,6 +86,19 @@ const FilmsPage = () => {
 			<SearchForm
 				onSubmit={queryFilms}
 			/>
+
+			{(films !== null
+				&& totalFilms !== null
+				&& films.data.length
+				< totalFilms?.data.length)
+				&& (
+					<ShowAllResourcesBtn
+						seeAll={getFilms}
+					/>
+				)
+			}
+
+
 
 			{films !== null && films.data.length === 0 && (
 				<Alert

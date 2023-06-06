@@ -34,6 +34,6 @@ export const getFilm = (id: string) => {
 /**
  * Search among films
  */
-export const searchFilms = (query: string) => {
-	return get<Films>(`/films/?search=${query}`)
+export const searchFilms = (query: string, page: number) => {
+	return get<Films>(`/films/?search=${query}&page=${page}`)
 }
