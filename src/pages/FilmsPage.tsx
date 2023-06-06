@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import * as SWAPI from '../services/SWAPI.ts'
-import { ListGroup } from 'react-bootstrap'
+import { Alert, ListGroup } from 'react-bootstrap'
 import { Films } from '../types'
 import ResourceListItem from '../components/ResourceListItem.tsx'
 import PageNavigation from '../components/PageNavigation.tsx'
@@ -83,6 +83,14 @@ const FilmsPage = () => {
 			<SearchForm
 				onSubmit={queryFilms}
 			/>
+
+			{films !== null && films.data.length === 0 && (
+				<Alert
+					variant='warning'
+				>
+					No films could be found.
+				</Alert>
+			)}
 
 			{films !== null && films.data.length > 0 && (
 				<>
