@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+
 
 interface IProps {
-	// onAddTodo: (todo: Todo) => void <-----detta är gammal kod
-
-	// skicka in namn på hämtningsfunktion här:
 	onSubmit: (queryInput: string) => void
 }
 
 const SearchForm: React.FC<IProps> = ({ onSubmit }) => {
 	const [queryInput, setQueryInput] = useState("")
 	const inputRef = useRef<HTMLInputElement>(null)
+
 
 	const handleSubmit = (e: React.FormEvent) => {
 		// stop form from submitting
@@ -19,11 +19,8 @@ const SearchForm: React.FC<IProps> = ({ onSubmit }) => {
 			return
 		}
 
-		// här ska vi söka på input (e.target.value)
+		// skickar tillbaks till föräldern den queryn som ska göras till API:t
 		onSubmit(queryInput)
-
-		// hur göra med loading då det är en state i FilmsPage? Ska search ha sin egen loading och rendera <Loading/> componenten?
-		// nej. söket till APIt ska göras ute i films, jag bara kallar på sök-funktionen här inne.
 
 		// clear newTodoTitle state
 		setQueryInput("")
@@ -32,7 +29,7 @@ const SearchForm: React.FC<IProps> = ({ onSubmit }) => {
 	// On component mount, focus on search field
 	useEffect(() => {
 		inputRef.current?.focus()
-	}, [])
+	}, [handleSubmit])
 
 	return (
 		<form id='SearchForm' onSubmit={handleSubmit} className="mb-3">

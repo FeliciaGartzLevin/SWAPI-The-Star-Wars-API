@@ -7,30 +7,43 @@ import PageNavigation from '../components/PageNavigation.tsx'
 import Error from '../components/Error.tsx'
 import Loading from '../components/Loading.tsx'
 import SearchForm from '../components/SearchForm.tsx'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../components/ShowAllResourcesBtn.tsx'
 
 const FilmsPage = () => {
 	const [films, setFilms] = useState<Films | null>(null)
-	const [totalFilms, setTotalFilms] = useState<Films | null>(null)
+	const [totalFilms, setTotalFilms] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [page, setPage] = useState(1)
+	// search params
+	const [searchParams, setSearchParams] = useSearchParams()
+	// get "query=" from URL Search Params
+	const query = searchParams.get("query")
 
-	// Get films from the API
-	const getFilms = async () => {
+	const resetValues = () => {
+		// reset states
 		setFilms(null)
 		setLoading(true)
 		setError(null)
+		setPage(1)
+		setSearchParams()
+	}
+
+	// Get films from the API
+	const getFilms = async () => {
+		// reset states when search is initialized
+		resetValues()
 
 		try {
 			// call API
-			const data = await SWAPI.getFilms()
+			const res = await SWAPI.getFilms()
 
 			// set film-state to the recieved data
-			setFilms(data)
+			setFilms(res)
 
-			setTotalFilms(data)
+			setTotalFilms(res.data.length)
+
 
 		} catch (error: any) {
 			setError(error.message)
@@ -41,9 +54,11 @@ const FilmsPage = () => {
 
 	// query the API for film
 	const queryFilms = async (queryInput: string) => {
-		setFilms(null)
-		setLoading(true)
-		setError(null)
+		// reset states when search is initialized
+		resetValues()
+
+		// set input value as query in searchParams
+		setSearchParams({ query: queryInput })
 
 		try {
 			const data = await SWAPI.searchFilms(queryInput, page)
@@ -90,15 +105,13 @@ const FilmsPage = () => {
 			{(films !== null
 				&& totalFilms !== null
 				&& films.data.length
-				< totalFilms?.data.length)
+				< totalFilms)
 				&& (
 					<ShowAllResourcesBtn
 						seeAll={getFilms}
 					/>
 				)
 			}
-
-
 
 			{films !== null && films.data.length === 0 && (
 				<Alert
