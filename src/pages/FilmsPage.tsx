@@ -131,6 +131,9 @@ const FilmsPage = () => {
 
 			{films !== null && films.data.length > 0 && (
 				<>
+					{query && (
+						<p className='m-0 small'>Showing {films.total} search result for "{query}"</p>
+					)}
 					<ListGroup>
 						{films.data.map(film => (
 							<ResourceListItem
