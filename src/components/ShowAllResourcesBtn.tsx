@@ -2,16 +2,15 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 
 interface IProps {
-	resourceName: string
-	page: number
-	seeAll: (resourceName: string, page: number) => Promise<void>
+	seeAll: () => void
+
 }
 
-const ShowAllResourcesBtn: React.FC<IProps> = ({ seeAll, resourceName, page }) => {
+const ShowAllResourcesBtn: React.FC<IProps> = ({ seeAll }) => {
 	return (
 		<Button
 			className='my-2'
-			onClick={() => seeAll(resourceName, page)}
+			onClick={seeAll}
 		>
 			Show all
 		</Button>

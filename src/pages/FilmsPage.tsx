@@ -72,19 +72,16 @@ const FilmsPage = () => {
 
 	}
 
-	// fetch films when page is being visited  for the first time
-	// not needed
-	/* 	useEffect(() => {
-			getFilms(resourceName, page)
-		}, []) */
+	const handleSeeAll = () => {
+		// removes the query from searchParams and hence triggers the useEffect below
+		setSearchParams({ page: String(page) })
+	}
 
 	useEffect(() => {
-
 		if (!query) {
 			getFilms(resourceName, page)
 			return
 		}
-
 		queryFilms(query, page)
 	}, [query])
 
@@ -119,9 +116,7 @@ const FilmsPage = () => {
 				< totalFilms)
 				&& (
 					<ShowAllResourcesBtn
-						resourceName={resourceName}
-						page={page}
-						seeAll={getFilms}
+						seeAll={handleSeeAll}
 					/>
 				)
 			}
