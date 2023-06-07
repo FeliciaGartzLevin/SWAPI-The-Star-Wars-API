@@ -34,8 +34,6 @@ const FilmsPage = () => {
 	const getFilms = async (resourceName: string, page: number) => {
 		// reset states when search is initialized
 		resetValues()
-		// reset searchParams
-		setSearchParams()
 
 		try {
 			// call API
@@ -54,11 +52,11 @@ const FilmsPage = () => {
 
 	const getQueryInput = (queryInput: string) => {
 		// set input value as query in searchParams
-		setSearchParams({ query: queryInput })
+		setSearchParams({ query: queryInput, page: String(page) })
 	}
 
 	// query the API for film
-	const queryFilms = async (queryInput: string) => {
+	const queryFilms = async (queryInput: string, page: number) => {
 		// reset states when search is initialized
 		resetValues()
 
@@ -74,19 +72,20 @@ const FilmsPage = () => {
 
 	}
 
-	// fetch films when page is being visited
-	useEffect(() => {
-		getFilms(resourceName, page)
-	}, [])
+	// fetch films when page is being visited  for the first time
+	// not needed
+	/* 	useEffect(() => {
+			getFilms(resourceName, page)
+		}, []) */
 
-	// when submitting a searchQuery, setSearchParams({ query: queryInput })
-	// is being set, which rerenders the page bc query changes.
-	// Hence one can move back/forth in the search-history and queryFilms
-	// are then being called (explanation to self though it is hard to grasp)
 	useEffect(() => {
-		if (!query) return
 
-		queryFilms(query)
+		if (!query) {
+			getFilms(resourceName, page)
+			return
+		}
+
+		queryFilms(query, page)
 	}, [query])
 
 	// handle clicking next or prev page
