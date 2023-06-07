@@ -34,6 +34,7 @@ const FilmsPage = () => {
 	const getFilms = async (resourceName: string, page: number) => {
 		// reset states when search is initialized
 		resetValues()
+		setSearchParams({ page: String(page) })
 
 		try {
 			// call API
