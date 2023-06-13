@@ -17,8 +17,8 @@ const FilmCard: React.FC<IProps> = ({ resource, endpoint }) => {
 					<h2 className="card-title h5">{resource.name}</h2>
 					<h3 className="card-subtitle mb-2 text-muted h6">Birth year: {resource.birth_year}</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Eye color: {resource.eye_color}</h3>
-					<h3 className="card-subtitle mb-2 text-muted h6">Height: {resource.height}</h3>
-					<h3 className="card-subtitle mb-2 text-muted h6">Mass: {resource.mass}</h3>
+					<h3 className="card-subtitle mb-2 text-muted h6">Height: {resource.height} cm</h3>
+					<h3 className="card-subtitle mb-2 text-muted h6">Mass: {resource.mass} kg</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Skin color: {resource.skin_color}</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Homeworld: {resource.homeworld.name}</h3>
 					<p className="card-text flex-fill">{resource.name} is in {resource.films_count} films, owns {resource.vehicles_count} vehicles and belongs to {resource.species_count} species.</p>
