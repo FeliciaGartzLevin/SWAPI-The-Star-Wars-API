@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 type Props = {}
 
-const ResourcesPage = (props: Props) => {
+const ResourcesPage: React.FC = (props: Props) => {
 	return (
 		<>
 			<div className="info-box mt-4">

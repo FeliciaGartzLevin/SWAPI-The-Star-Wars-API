@@ -2,7 +2,7 @@ import React from 'react'
 
 type Props = {}
 
-const PeoplePage = (props: Props) => {
+const PeoplePage: React.FC = (props: Props) => {
 	return (
 		<>
 			<h1>Characters</h1>

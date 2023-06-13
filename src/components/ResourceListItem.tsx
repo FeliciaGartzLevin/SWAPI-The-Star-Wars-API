@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ListGroup } from 'react-bootstrap'
-import { Film } from '../types'
 
 interface IProps {
 	resourceTitle: string

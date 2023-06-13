@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import * as SWAPI from '../services/SWAPI.ts'
-import { Alert, Button, ListGroup } from 'react-bootstrap'
+import { Alert, ListGroup } from 'react-bootstrap'
 import { Films } from '../types'
 import ResourceListItem from '../components/ResourceListItem.tsx'
 import PageNavigation from '../components/PageNavigation.tsx'

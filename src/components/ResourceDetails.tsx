@@ -2,7 +2,7 @@ import React from 'react'
 
 type Props = {}
 
-const ResourceDetails = (props: Props) => {
+const ResourceDetails: React.FC = (props: Props) => {
 	return (
 		<div>ResourceDetails</div>
 	)

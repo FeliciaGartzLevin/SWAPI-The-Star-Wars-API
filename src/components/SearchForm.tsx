@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 
 
 interface IProps {
@@ -38,7 +37,7 @@ const SearchForm: React.FC<IProps> = ({ onSubmit }) => {
 					ref={inputRef}
 					type="text"
 					className="form-control"
-					placeholder="Todo title"
+					placeholder="Search The Star Wars API"
 					onChange={e => setQueryInput(e.target.value)}
 					value={queryInput}
 				/>

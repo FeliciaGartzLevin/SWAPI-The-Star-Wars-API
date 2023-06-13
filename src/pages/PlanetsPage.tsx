@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PlanetsPage = () => {
+const PlanetsPage: React.FC = () => {
 	return (
 		<h1>PlanetsPage</h1>
 	)
