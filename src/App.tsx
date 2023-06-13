@@ -19,7 +19,7 @@ const App = () => {
 		<div id="App">
 			<Navigation />
 
-			<Container className='py-3'>
+			<div className='py-3 container-fluid'>
 				<Routes>
 					<Route path='/' element={<HomePage />} />
 					<Route path="/resources" element={<ResourcesPage />} />
@@ -31,7 +31,7 @@ const App = () => {
 					<Route path="/vehicles" element={<VehiclesPage />} />
 					<Route path='/*' element={<NotFound />} />
 				</Routes>
-			</Container>
+			</div>
 		</div>
 	)
 }

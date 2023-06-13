@@ -9,6 +9,7 @@ import Loading from '../components/Loading.tsx'
 import SearchForm from '../components/SearchForm.tsx'
 import { useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../components/ShowAllResourcesBtn.tsx'
+import ResourceCard from '../components/ResourceCard.tsx'
 
 const FilmsPage = () => {
 	const [resourceName, /* setResourceName */] = useState('films')
@@ -135,15 +136,15 @@ const FilmsPage = () => {
 					{query && (
 						<p className='m-0 small'>Showing {films.total} search result for "{query}"</p>
 					)}
-					<ListGroup>
+
+					<div className='row'>
 						{films.data.map(film => (
-							<ResourceListItem
+							<ResourceCard
 								key={film.id}
-								resourceTitle={film.title}
-								resourceId={String(film.id)}
-								endpoint='films' />
+								resource={film}
+								endpoint={resourceName} />
 						))}
-					</ListGroup>
+					</div>
 
 					<PageNavigation
 						currentPage={page}
