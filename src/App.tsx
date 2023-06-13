@@ -11,6 +11,7 @@ import PlanetsPage from './pages/PlanetsPage'
 import SpeciesPage from './pages/SpeciesPage'
 import VehiclesPage from './pages/VehiclesPage'
 import StarshipsPage from './pages/StarshipsPage'
+import FilmPage from './pages/FilmPage'
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
 					<Route path='/' element={<HomePage />} />
 					<Route path="/resources" element={<ResourcesPage />} />
 					<Route path="/films" element={<FilmsPage />} />
+					<Route path="/films/:filmId" element={<FilmPage />} />
 					<Route path="/people" element={<PeoplePage />} />
 					<Route path="/planets" element={<PlanetsPage />} />
 					<Route path="/species" element={<SpeciesPage />} />
