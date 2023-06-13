@@ -1,4 +1,3 @@
-import Container from 'react-bootstrap/Container'
 import { Routes, Route } from 'react-router-dom'
 import './assets/scss/App.scss'
 // pages
@@ -19,7 +18,7 @@ const App = () => {
 		<div id="App">
 			<Navigation />
 
-			<div className='py-3 container-fluid'>
+			<div className='py-3 container'>
 				<Routes>
 					<Route path='/' element={<HomePage />} />
 					<Route path="/resources" element={<ResourcesPage />} />

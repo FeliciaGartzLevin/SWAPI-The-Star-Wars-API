@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Film } from '../types'
+import Button from 'react-bootstrap/Button'
 
 interface IProps {
 	resource: Film
@@ -11,9 +12,7 @@ const ResourceCard: React.FC<IProps> = ({ resource, endpoint }) => {
 	const plot = resource.opening_crawl.slice(0, 200) + '...'
 
 	return (
-		// <Link
-		// 	to={`/${endpoint}/${resource.id}`}
-		// >
+
 		<div className="col-lg-4 col-md-6 col-sm-12 mb-3">
 			<div className="card">
 				<div className="card-body">
@@ -23,11 +22,15 @@ const ResourceCard: React.FC<IProps> = ({ resource, endpoint }) => {
 					<p className="card-text">{plot}</p>
 					<Link
 						to={`/${endpoint}/${resource.id}`}
-						className="card-link">More...</Link>
+						className="card-link">
+						<Button className='button card-button'>
+							More...
+						</Button>
+					</Link>
 				</div>
 			</div>
 		</div>
-		// </Link>
+
 	)
 }
 
