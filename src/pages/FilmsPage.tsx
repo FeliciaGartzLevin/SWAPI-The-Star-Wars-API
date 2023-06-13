@@ -11,7 +11,7 @@ import { useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../components/ShowAllResourcesBtn.tsx'
 
 const FilmsPage = () => {
-	const [resourceName, setResourceName] = useState('films')
+	const [resourceName, /* setResourceName */] = useState('films')
 	const [films, setFilms] = useState<Films | null>(null)
 	const [totalFilms, setTotalFilms] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)

@@ -2,9 +2,9 @@ import React from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { Link } from 'react-router-dom'
 
-type Props = {}
+/* type Props = {} */
 
-const ResourcesPage: React.FC = (props: Props) => {
+const ResourcesPage: React.FC = (/* props: Props */) => {
 	return (
 		<>
 			<div className="info-box mt-4">

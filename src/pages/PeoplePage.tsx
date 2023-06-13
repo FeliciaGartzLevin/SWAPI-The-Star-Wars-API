@@ -1,8 +1,8 @@
 import React from 'react'
+/*
+type Props = {} */
 
-type Props = {}
-
-const PeoplePage: React.FC = (props: Props) => {
+const PeoplePage: React.FC = (/* props: Props */) => {
 	return (
 		<>
 			<h1>Characters</h1>
