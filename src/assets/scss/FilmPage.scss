@@ -1,0 +1,11 @@
+.ResourcesPage {
+	a {
+		display: inline;
+		color: $button-hover-color;
+		font-weight: bold;
+
+		&:hover {
+			color: $info-box-beige ;
+		}
+	}
+}

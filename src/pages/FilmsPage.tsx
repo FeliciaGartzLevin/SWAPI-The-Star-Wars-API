@@ -8,10 +8,10 @@ import Loading from '../components/Loading.tsx'
 import SearchForm from '../components/SearchForm.tsx'
 import { useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../components/ShowAllResourcesBtn.tsx'
-import FilmCard from '../components/FilmCard.tsx'
+import FilmCard from '../components/FilmsCards.tsx'
 
 const FilmsPage = () => {
-	const [resourceName, /* setResourceName */] = useState('films')
+	const resourceName = 'films'
 	const [films, setFilms] = useState<Films | null>(null)
 	const [totalFilms, setTotalFilms] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)
@@ -38,12 +38,13 @@ const FilmsPage = () => {
 
 		try {
 			// call API
-			const res = await SWAPI.getResources(resourceName, page)
+			const res = await SWAPI.getResources<Films>(resourceName, page)
 
 			// set film-state to the recieved data
 			setFilms(res)
 			setTotalFilms(res.data.length)
 
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			setError(error.message)
 		}
@@ -62,9 +63,10 @@ const FilmsPage = () => {
 		resetValues()
 
 		try {
-			const data = await SWAPI.searchResource(resourceName, queryInput, page)
+			const data = await SWAPI.searchResource<Films>(resourceName, queryInput, page)
 			setFilms(data)
 
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			setError(error.message)
 

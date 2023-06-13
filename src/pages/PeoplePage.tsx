@@ -1,16 +1,163 @@
-import React from 'react'
-/*
-type Props = {} */
+import { useState, useEffect } from 'react'
+import * as SWAPI from '../services/SWAPI.ts'
+import { Alert } from 'react-bootstrap'
+import { People } from '../types'
+import PageNavigation from '../components/PageNavigation.tsx'
+import Error from '../components/Error.tsx'
+import Loading from '../components/Loading.tsx'
+import SearchForm from '../components/SearchForm.tsx'
+import { useSearchParams } from 'react-router-dom'
+import ShowAllResourcesBtn from '../components/ShowAllResourcesBtn.tsx'
+import PersonCard from '../components/PeopleCards.tsx'
 
-const PeoplePage: React.FC = (/* props: Props */) => {
+const PeoplePage = () => {
+	const resourceName = 'people'
+	const [people, setPeople] = useState<People | null>(null)
+	const [totalPeople, setTotalPeople] = useState<number | null>(null)
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState<string | null>(null)
+	const [page, setPage] = useState(1)
+	// search params
+	const [searchParams, setSearchParams] = useSearchParams()
+	// get "query=" from URL Search Params
+	const query = searchParams.get("query")
+
+	const resetValues = () => {
+		// reset states
+		setPeople(null)
+		setLoading(true)
+		setError(null)
+		setPage(1)
+	}
+
+	// Get people from the API
+	const getPeople = async (resourceName: string, page: number) => {
+		// reset states when search is initialized
+		resetValues()
+		setSearchParams({ page: String(page) })
+
+		try {
+			// call API
+			const res = await SWAPI.getResources<People>(resourceName, page)
+
+			// set person-state to the recieved data
+			setPeople(res)
+			setTotalPeople(res.data.length)
+
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (error: any) {
+			setError(error.message)
+		}
+
+		setLoading(false)
+	}
+
+	const getQueryInput = (queryInput: string) => {
+		// set input value as query in searchParams
+		setSearchParams({ query: queryInput, page: String(page) })
+	}
+
+	// query the API for person
+	const queryPeople = async (queryInput: string, page: number) => {
+		// reset states when search is initialized
+		resetValues()
+
+		try {
+			const data = await SWAPI.searchResource<People>(resourceName, queryInput, page)
+			setPeople(data)
+
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (error: any) {
+			setError(error.message)
+
+		}
+		setLoading(false)
+
+	}
+
+	const handleSeeAll = () => {
+		// removes the query from searchParams and hence triggers the useEffect below
+		setSearchParams({ page: String(page) })
+	}
+
+	useEffect(() => {
+		if (!query) {
+			getPeople(resourceName, page)
+			return
+		}
+		queryPeople(query, page)
+	}, [query])
+
+	// handle clicking next or prev page
+	const pageSwitcher = (directionNumber: number) => {
+		setPage(prevValue => prevValue + directionNumber)
+	}
+
 	return (
-		<>
-			<h1>Characters</h1>
+		<div id='PeoplePage' className="ResourcesPage info-box">
 
-			<p>
-				Fetch all people from the API and insert here.
-			</p>
-		</>
+			<h1>People</h1>
+
+			{error &&
+				<Error
+					errorMsg={error}
+				/>
+			}
+
+			{loading &&
+				<Loading
+				/>
+			}
+
+			<div className="d-flex justify-content-center">
+				<SearchForm
+					onSubmit={getQueryInput}
+				/>
+			</div>
+
+
+			{(people !== null
+				&& totalPeople !== null
+				&& people.data.length
+				< totalPeople)
+				&& (
+					<ShowAllResourcesBtn
+						seeAll={handleSeeAll}
+					/>
+				)
+			}
+
+			{people !== null && people.data.length === 0 && (
+				<Alert
+					variant='warning'
+				>
+					No people could be found.
+				</Alert>
+			)}
+
+			{people !== null && people.data.length > 0 && (
+				<>
+					{query && (
+						<p className='m-0 small'>Showing {people.total} search result for "{query}"</p>
+					)}
+
+					<div className='row'>
+						{people.data.map(person => (
+							<PersonCard
+								key={person.id}
+								resource={person}
+								endpoint={resourceName} />
+						))}
+					</div>
+
+					<PageNavigation
+						currentPage={page}
+						maxPage={people.last_page}
+						pageSwitcher={pageSwitcher}
+					/>
+				</>
+			)}
+		</div>
 	)
 }
 

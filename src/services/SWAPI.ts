@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Film, Films } from '../types'
+import { Films, People, SingleFilm, SinglePerson } from '../types'
 
 const BASE_URL = 'https://swapi.thehiveresistance.com/api'
 
@@ -21,21 +21,21 @@ export const get = async <T>(endpoint: string) => {
 /**
  * Get all resources
  */
-export const getResources = async (resource: string, page: number) => {
-	return get<Films>(`/${resource}/?page=${page}`)
+export const getResources = async <T>(resource: string, page: number) => {
+	return get<T>(`/${resource}/?page=${page}`)
 }
 
 /**
  * Get a single resource
  */
 
-export const getResource = (resource: string, id: string) => {
-	return get<Film>(`/${resource}/${id}`)
+export const getResource = <T>(resource: string, id: string) => {
+	return get<T>(`/${resource}/${id}`)
 }
 
 /**
  * Search among resources
  */
-export const searchResource = (resource: string, query: string, page: number) => {
-	return get<Films>(`/${resource}/?search=${query}&page=${page}`)
+export const searchResource = <T>(resource: string, query: string, page: number) => {
+	return get<T>(`/${resource}/?search=${query}&page=${page}`)
 }
