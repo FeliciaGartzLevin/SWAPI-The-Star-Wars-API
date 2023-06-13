@@ -6,6 +6,7 @@
 		border: 1px black solid;
 		background-color: $button-beige;
 		font-family: $font-default;
+		border-radius: 35px;
 
 		&:hover {
 			background-color: $button-hover-color;
@@ -19,9 +20,6 @@
 
 	}
 
-	&.card-button {
-		padding: 0;
-	}
 
 }
 
@@ -32,8 +30,8 @@
 }
 
 #SearchForm {
-
 	.input-group {
+
 		input {
 
 			border: 1px solid black;

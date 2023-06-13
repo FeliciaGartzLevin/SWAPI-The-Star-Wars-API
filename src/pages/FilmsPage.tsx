@@ -8,7 +8,7 @@ import Loading from '../components/Loading.tsx'
 import SearchForm from '../components/SearchForm.tsx'
 import { useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../components/ShowAllResourcesBtn.tsx'
-import ResourceCard from '../components/ResourceCard.tsx'
+import FilmCard from '../components/FilmCard.tsx'
 
 const FilmsPage = () => {
 	const [resourceName, /* setResourceName */] = useState('films')
@@ -107,9 +107,12 @@ const FilmsPage = () => {
 				/>
 			}
 
-			<SearchForm
-				onSubmit={getQueryInput}
-			/>
+			<div className="d-flex justify-content-center">
+				<SearchForm
+					onSubmit={getQueryInput}
+				/>
+			</div>
+
 
 			{(films !== null
 				&& totalFilms !== null
@@ -138,7 +141,7 @@ const FilmsPage = () => {
 
 					<div className='row'>
 						{films.data.map(film => (
-							<ResourceCard
+							<FilmCard
 								key={film.id}
 								resource={film}
 								endpoint={resourceName} />
