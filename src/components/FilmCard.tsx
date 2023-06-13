@@ -16,11 +16,11 @@ const FilmCard: React.FC<IProps> = ({ resource, endpoint }) => {
 		<div className="col-lg-4 col-md-6 col-sm-12 mb-3">
 			<div className="card d-flex h-100 card-bg">
 				<div className="card-body d-flex flex-column">
-					<h5 className="card-title">{resource.title}</h5>
-					<h6 className="card-subtitle mb-2 text-muted">Episode {resource.episode_id}</h6>
-					<h6 className="card-subtitle mb-2 text-muted">Released: {resource.release_date}</h6>
-					<h6 className="card-subtitle mb-2 text-muted">Director: {resource.director}</h6>
-					<h6 className="card-subtitle mb-2 text-muted">Produced by: {resource.producer}</h6>
+					<h2 className="card-title h5">{resource.title}</h2>
+					<h3 className="card-subtitle mb-2 text-muted h6">Episode {resource.episode_id}</h3>
+					<h3 className="card-subtitle mb-2 text-muted h6">Released: {resource.release_date}</h3>
+					<h3 className="card-subtitle mb-2 text-muted h6">Director: {resource.director}</h3>
+					<h3 className="card-subtitle mb-2 text-muted h6">Produced by: {resource.producer}</h3>
 					<p className="card-text flex-fill">{plot}</p>
 					<Link
 						to={`/${endpoint}/${resource.id}`}

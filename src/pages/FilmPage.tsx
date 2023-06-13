@@ -17,7 +17,6 @@ const FilmPage = () => {
 
 	const resetValues = () => {
 		// reset states
-		// setFilm(null)
 		setLoading(true)
 		setError(null)
 	}
@@ -68,8 +67,18 @@ const FilmPage = () => {
 
 			{film !== null && (
 				<>
-					<h1>{film.title}</h1>
-
+					<div className="card d-flex h-100 card-bg">
+						<div className="card-body d-flex flex-column">
+							<h1 className="card-title">{film.title}</h1>
+							<h3 className="card-subtitle mb-2 text-muted h6">Episode {film.episode_id}</h3>
+							<h3 className="card-subtitle mb-2 text-muted h6">Released: {film.release_date}</h3>
+							<h3 className="card-subtitle mb-2 text-muted h6">Director: {film.director}</h3>
+							<h3 className="card-subtitle mb-2 text-muted h6">Produced by: {film.producer}</h3>
+							<hr />
+							<h2 className="card-title h3">Plot</h2>
+							<p className="card-text flex-fill">{film.opening_crawl}</p>
+						</div>
+					</div>
 				</>
 			)}
 		</div>
