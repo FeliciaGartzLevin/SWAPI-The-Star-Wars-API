@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Starship } from '../../types'
+import { Vehicle } from '../../types'
 import Button from 'react-bootstrap/Button'
 
 interface IProps {
-	resource: Starship
+	resource: Vehicle
 	endpoint: string
 }
 
@@ -15,15 +15,13 @@ const PeopleCards: React.FC<IProps> = ({ resource, endpoint }) => {
 				<div className="card-body d-flex flex-column">
 					<h2 className="card-title h5">{resource.name}</h2>
 					<h3 className="card-subtitle mb-2 text-muted h6">Model: {resource.model}</h3>
-					<h3 className="card-subtitle mb-2 text-muted h6">Starship Class: {resource.starship_class}</h3>
+					<h3 className="card-subtitle mb-2 text-muted h6">Starship Class: {resource.vehicle_class}</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Manufacturer: {resource.manufacturer}</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Cost in credits: {resource.cost_in_credits}</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Length: {resource.length} m</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Crew: {resource.crew}</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Passengers: {resource.passengers}</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Max atmosphering speed: {resource.max_atmosphering_speed} km/h</h3>
-					<h3 className="card-subtitle mb-2 text-muted h6">Hyperdrive rating: {resource.hyperdrive_rating}</h3>
-					<h3 className="card-subtitle mb-2 text-muted h6">MGLT: {resource.MGLT}</h3>
 					<h3 className="card-subtitle mb-2 text-muted h6">Consumables: {resource.consumables}</h3>
 					<p className="card-text flex-fill">{resource.name} has {resource.pilots_count} registered pilots and appears in {resource.films_count} films.</p>
 					<Link
