@@ -83,6 +83,12 @@ const FilmPage = () => {
 									resourceArray={film.characters}
 								/>
 							)}
+							{film.planets.length > 0 && (
+								<OverviewLinks
+									resourceTitle={'Planets'}
+									resourceArray={film.planets}
+								/>
+							)}
 							{film.starships.length > 0 && (
 								<OverviewLinks
 									resourceTitle={'Starships'}

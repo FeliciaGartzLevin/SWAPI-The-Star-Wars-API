@@ -14,6 +14,7 @@ import StarshipsPage from './pages/overviewPages/StarshipsPage'
 import FilmPage from './pages/singleResourcePages/FilmPage'
 import PersonPage from './pages/singleResourcePages/PersonPage'
 import PlanetPage from './pages/singleResourcePages/PlanetPage'
+import StarshipPage from './pages/singleResourcePages/StarshipPage'
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
 					<Route path="/planets/:planetId" element={<PlanetPage />} />
 					<Route path="/species" element={<SpeciesPage />} />
 					<Route path="/starships" element={<StarshipsPage />} />
+					<Route path="/starships/:starshipId" element={<StarshipPage />} />
 					<Route path="/vehicles" element={<VehiclesPage />} />
 					<Route path='/*' element={<NotFound />} />
 				</Routes>
