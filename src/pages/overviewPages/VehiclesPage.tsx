@@ -13,7 +13,6 @@ import VehiclesCards from '../../components/cards/VehiclesCards.tsx'
 const VehiclesPage = () => {
 	const resourceName = 'vehicles'
 	const [vehicles, setVehicles] = useState<Vehicles | null>(null)
-	const [totalVehicles, setTotalVehicles] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [page, setPage] = useState(1)
@@ -46,7 +45,6 @@ const VehiclesPage = () => {
 
 			// set vehicle-state to the recieved data
 			setVehicles(res)
-			setTotalVehicles(res.data.length)
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {

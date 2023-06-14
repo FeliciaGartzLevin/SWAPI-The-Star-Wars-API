@@ -13,7 +13,6 @@ import FilmsCards from '../../components/cards/FilmsCards.tsx'
 const FilmsPage = () => {
 	const resourceName = 'films'
 	const [films, setFilms] = useState<Films | null>(null)
-	const [totalFilms, setTotalFilms] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [page, setPage] = useState(1)
@@ -42,7 +41,6 @@ const FilmsPage = () => {
 
 			// set film-state to the recieved data
 			setFilms(res)
-			setTotalFilms(res.data.length)
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -116,15 +114,11 @@ const FilmsPage = () => {
 			</div>
 
 
-			{(films !== null
-				&& totalFilms !== null
-				&& films.data.length
-				< totalFilms)
-				&& (
-					<ShowAllResourcesBtn
-						seeAll={handleSeeAll}
-					/>
-				)
+			{query && (
+				<ShowAllResourcesBtn
+					seeAll={handleSeeAll}
+				/>
+			)
 			}
 
 			{films !== null && films.data.length === 0 && (

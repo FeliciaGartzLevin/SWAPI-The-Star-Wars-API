@@ -13,7 +13,6 @@ import StarshipsCards from '../../components/cards/StarshipsCards.tsx'
 const StarshipsPage = () => {
 	const resourceName = 'starships'
 	const [starships, setStarships] = useState<Starships | null>(null)
-	const [totalStarships, setTotalStarships] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [page, setPage] = useState(1)
@@ -46,7 +45,6 @@ const StarshipsPage = () => {
 
 			// set starship-state to the recieved data
 			setStarships(res)
-			setTotalStarships(res.data.length)
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {

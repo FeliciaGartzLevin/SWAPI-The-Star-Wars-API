@@ -13,7 +13,6 @@ import PeopleCards from '../../components/cards/PeopleCards.tsx'
 const PeoplePage = () => {
 	const resourceName = 'people'
 	const [people, setPeople] = useState<People | null>(null)
-	const [totalPeople, setTotalPeople] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [page, setPage] = useState(1)
@@ -46,7 +45,6 @@ const PeoplePage = () => {
 
 			// set person-state to the recieved data
 			setPeople(res)
-			setTotalPeople(res.data.length)
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {

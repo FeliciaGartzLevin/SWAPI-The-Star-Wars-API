@@ -13,7 +13,6 @@ import PlanetsCards from '../../components/cards/PlanetsCards.tsx'
 const PlanetsPage = () => {
 	const resourceName = 'planets'
 	const [planets, setPlanets] = useState<Planets | null>(null)
-	const [totalPlanets, setTotalPlanets] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [page, setPage] = useState(1)
@@ -46,7 +45,6 @@ const PlanetsPage = () => {
 
 			// set planet-state to the recieved data
 			setPlanets(res)
-			setTotalPlanets(res.data.length)
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {

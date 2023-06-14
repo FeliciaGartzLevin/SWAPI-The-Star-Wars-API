@@ -13,7 +13,6 @@ import SpeciesCards from '../../components/cards/SpeciesCards.tsx'
 const SpeciesPage = () => {
 	const resourceName = 'species'
 	const [species, setSpecies] = useState<AllSpecies | null>(null)
-	const [totalSpecies, setTotalSpecies] = useState<number | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [page, setPage] = useState(1)
@@ -47,7 +46,6 @@ const SpeciesPage = () => {
 
 			// set vehicle-state to the recieved data
 			setSpecies(res)
-			setTotalSpecies(res.data.length)
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
