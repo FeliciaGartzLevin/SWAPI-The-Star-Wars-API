@@ -12,6 +12,10 @@ interface idNameContent {
 	id: number,
 	name: string
 }
+interface idTitleContent {
+	id: number,
+	title: string
+}
 
 
 /**
@@ -116,7 +120,7 @@ export interface SinglePerson {
 	created: string,
 	edited: string,
 	homeworld: idNameContent
-	films: idNameContent[]
+	films: idTitleContent[]
 	species: idNameContent[]
 	starships: idNameContent[]
 	vehicles: idNameContent[]

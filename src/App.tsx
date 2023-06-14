@@ -4,14 +4,15 @@ import './assets/scss/App.scss'
 import HomePage from './pages/HomePage'
 import Navigation from './components/Navigation'
 import NotFound from './pages/NotFound'
-import ResourcesPage from './pages/ResourcesPage'
-import FilmsPage from './pages/FilmsPage'
-import PeoplePage from './pages/PeoplePage'
-import PlanetsPage from './pages/PlanetsPage'
-import SpeciesPage from './pages/SpeciesPage'
-import VehiclesPage from './pages/VehiclesPage'
-import StarshipsPage from './pages/StarshipsPage'
-import FilmPage from './pages/FilmPage'
+import ResourcesPage from './pages/overviewPages/ResourcesPage'
+import FilmsPage from './pages/overviewPages/FilmsPage'
+import PeoplePage from './pages/overviewPages/PeoplePage'
+import PlanetsPage from './pages/overviewPages/PlanetsPage'
+import SpeciesPage from './pages/overviewPages/SpeciesPage'
+import VehiclesPage from './pages/overviewPages/VehiclesPage'
+import StarshipsPage from './pages/overviewPages/StarshipsPage'
+import FilmPage from './pages/singleResourcePages/FilmPage'
+import PersonPage from './pages/singleResourcePages/PersonPage'
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const App = () => {
 					<Route path="/films" element={<FilmsPage />} />
 					<Route path="/films/:filmId" element={<FilmPage />} />
 					<Route path="/people" element={<PeoplePage />} />
+					<Route path="/people/:personId" element={<PersonPage />} />
 					<Route path="/planets" element={<PlanetsPage />} />
 					<Route path="/species" element={<SpeciesPage />} />
 					<Route path="/starships" element={<StarshipsPage />} />

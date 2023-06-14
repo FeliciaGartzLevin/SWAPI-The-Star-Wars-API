@@ -8,9 +8,8 @@ interface IProps {
 	endpoint: string
 }
 
-const FilmCard: React.FC<IProps> = ({ resource, endpoint }) => {
+const PeopleCards: React.FC<IProps> = ({ resource, endpoint }) => {
 	return (
-
 		<div className="col-lg-4 col-md-6 col-sm-12 mb-3">
 			<div className="card d-flex h-100 card-bg">
 				<div className="card-body d-flex flex-column">
@@ -36,4 +35,4 @@ const FilmCard: React.FC<IProps> = ({ resource, endpoint }) => {
 	)
 }
 
-export default FilmCard
+export default PeopleCards

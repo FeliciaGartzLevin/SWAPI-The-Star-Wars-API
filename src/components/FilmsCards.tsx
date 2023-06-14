@@ -8,7 +8,7 @@ interface IProps {
 	endpoint: string
 }
 
-const FilmCard: React.FC<IProps> = ({ resource, endpoint }) => {
+const FilmsCards: React.FC<IProps> = ({ resource, endpoint }) => {
 	const plot = resource.opening_crawl.slice(0, 200) + '...'
 
 	return (
@@ -36,4 +36,4 @@ const FilmCard: React.FC<IProps> = ({ resource, endpoint }) => {
 	)
 }
 
-export default FilmCard
+export default FilmsCards

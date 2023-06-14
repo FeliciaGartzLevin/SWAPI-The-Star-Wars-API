@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
-import * as SWAPI from '../services/SWAPI.ts'
+import * as SWAPI from '../../services/SWAPI.ts'
 import { Alert } from 'react-bootstrap'
-import { Films } from '../types'
-import PageNavigation from '../components/PageNavigation.tsx'
-import Error from '../components/Error.tsx'
-import Loading from '../components/Loading.tsx'
-import SearchForm from '../components/SearchForm.tsx'
+import { Films } from '../../types/index'
+import PageNavigation from '../../components/PageNavigation.tsx'
+import Error from '../../components/Error.tsx'
+import Loading from '../../components/Loading.tsx'
+import SearchForm from '../../components/SearchForm.tsx'
 import { useSearchParams } from 'react-router-dom'
-import ShowAllResourcesBtn from '../components/ShowAllResourcesBtn.tsx'
-import FilmCard from '../components/FilmsCards.tsx'
+import ShowAllResourcesBtn from '../../components/ShowAllResourcesBtn.tsx'
+import FilmsCards from '../../components/FilmsCards.tsx'
 
 const FilmsPage = () => {
 	const resourceName = 'films'
@@ -143,7 +143,7 @@ const FilmsPage = () => {
 
 					<div className='row'>
 						{films.data.map(film => (
-							<FilmCard
+							<FilmsCards
 								key={film.id}
 								resource={film}
 								endpoint={resourceName} />

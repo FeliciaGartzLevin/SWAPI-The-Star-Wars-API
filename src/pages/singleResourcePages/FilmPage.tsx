@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import * as SWAPI from '../services/SWAPI.ts'
-import Error from '../components/Error.tsx'
-import Loading from '../components/Loading.tsx'
+import * as SWAPI from '../../services/SWAPI.ts'
+import Error from '../../components/Error.tsx'
+import Loading from '../../components/Loading.tsx'
 import { Link, useParams } from 'react-router-dom'
-import { SingleFilm } from "../types"
+import { SingleFilm } from "../../types/index"
+import OverviewLinks from '../../components/OverviewLinks.tsx'
 
 
 const FilmPage = () => {
@@ -75,71 +76,31 @@ const FilmPage = () => {
 							<h2 className="card-title h3">Plot</h2>
 							<p className="card-text">{film.opening_crawl}</p>
 
-							<hr />
-							<h2 className="card-title h3">Characters</h2>
-							{
-								film.characters.map(character => (
-									<Link
-										key={character.id}
-										to={`/people/${character.id}`}
-										className="d-inline">
-										<span>{character.name}, </span>
-									</Link>
-								))
-							}
-
-							<hr />
-							<h2 className="card-title h3">Planets</h2>
-							{
-								film.planets.map(planet => (
-									<Link
-										key={planet.id}
-										to={`/planets/${planet.id}`}
-										className="d-inline">
-										<span>{planet.name}, </span>
-									</Link>
-								))
-							}
-
-							<hr />
-							<h2 className="card-title h3">Starships</h2>
-							{
-								film.starships.map(starship => (
-									<Link
-										key={starship.id}
-										to={`/starships/${starship.id}`}
-										className="d-inline">
-										<span>{starship.name}, </span>
-									</Link>
-								))
-							}
-
-							<hr />
-							<h2 className="card-title h3">Vehicles</h2>
-							{
-								film.vehicles.map(vehicle => (
-									<Link
-										key={vehicle.id}
-										to={`/vehicles/${vehicle.id}`}
-										className="d-inline">
-										<span>{vehicle.name}, </span>
-									</Link>
-								))
-							}
-
-							<hr />
-							<h2 className="card-title h3">Species</h2>
-							{
-								film.species.map(specie => (
-									<Link
-										key={specie.id}
-										to={`/species/${specie.id}`}
-										className="d-inline">
-										<span>{specie.name}, </span>
-									</Link>
-								))
-							}
-
+							{film.characters.length > 0 && (
+								<OverviewLinks
+									resourceTitle={'Characters'}
+									endpoint={'people'}
+									resourceArray={film.characters}
+								/>
+							)}
+							{film.starships.length > 0 && (
+								<OverviewLinks
+									resourceTitle={'Starships'}
+									resourceArray={film.starships}
+								/>
+							)}
+							{film.vehicles.length > 0 && (
+								<OverviewLinks
+									resourceTitle={'Vehicles'}
+									resourceArray={film.vehicles}
+								/>
+							)}
+							{film.species.length > 0 && (
+								<OverviewLinks
+									resourceTitle={'Species'}
+									resourceArray={film.species}
+								/>
+							)}
 						</div>
 					</div>
 				</>
