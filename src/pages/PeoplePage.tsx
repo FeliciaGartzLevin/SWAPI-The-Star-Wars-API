@@ -81,15 +81,17 @@ const PeoplePage = () => {
 	}
 
 	useEffect(() => {
+		console.log("'page' is currently: ", page)
 		if (!query) {
 			getPeople(resourceName, page)
 			return
 		}
 		queryPeople(query, page)
-	}, [query])
+	}, [query, page])
 
 	// handle clicking next or prev page
 	const pageSwitcher = (directionNumber: number) => {
+		console.log("'page' is currently: ", page)
 		setPage(prevValue => prevValue + directionNumber)
 	}
 
@@ -140,6 +142,12 @@ const PeoplePage = () => {
 					{query && (
 						<p className='m-0 small'>Showing {people.total} search result for "{query}"</p>
 					)}
+
+					<PageNavigation
+						currentPage={page}
+						maxPage={people.last_page}
+						pageSwitcher={pageSwitcher}
+					/>
 
 					<div className='row'>
 						{people.data.map(person => (
