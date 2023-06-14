@@ -8,8 +8,7 @@ import Loading from '../../components/Loading.tsx'
 import SearchForm from '../../components/SearchForm.tsx'
 import { useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../../components/ShowAllResourcesBtn.tsx'
-import PlanetCard from '../../components/PlanetsCards.tsx'
-import PlanetsCards from '../../components/PlanetsCards.tsx'
+import PlanetsCards from '../../components/cards/PlanetsCards.tsx'
 
 const PlanetsPage = () => {
 	const resourceName = 'planets'

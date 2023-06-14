@@ -4,7 +4,7 @@ import Error from '../../components/Error.tsx'
 import Loading from '../../components/Loading.tsx'
 import { Link, useParams } from 'react-router-dom'
 import { SingleFilm } from "../../types/index"
-import OverviewLinks from '../../components/OverviewLinks.tsx'
+import OverviewLinks from '../../components/cards/OverviewLinks.tsx'
 
 
 const FilmPage = () => {

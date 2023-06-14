@@ -1,5 +1,5 @@
 import React from 'react'
-import { idNameContent } from '../types'
+import { idNameContent } from '../../types'
 import { Link } from 'react-router-dom'
 
 type IProps = {

@@ -2,10 +2,10 @@ import { useState } from 'react'
 import * as SWAPI from '../../services/SWAPI.ts'
 import Error from '../../components/Error.tsx'
 import Loading from '../../components/Loading.tsx'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { SinglePerson } from "../../types/index"
-import OverviewLinks from '../../components/OverviewLinks.tsx'
-import OverviewFilmLinks from '../../components/OverviewFilmLinks.tsx'
+import OverviewLinks from '../../components/cards/OverviewLinks.tsx'
+import OverviewFilmLinks from '../../components/cards/OverviewFilmLinks.tsx'
 
 
 const PersonPage = () => {
@@ -74,12 +74,11 @@ const PersonPage = () => {
 							<h3 className="card-subtitle mb-2 text-muted h6">Height: {person.height} cm</h3>
 							<h3 className="card-subtitle mb-2 text-muted h6">Mass: {person.mass} kg</h3>
 							<h3 className="card-subtitle mb-2 text-muted h6">Skin color: {person.skin_color}</h3>
-							<h3 className="card-subtitle mb-2 text-muted h6">Homeworld: {person.homeworld.name}</h3>
+							<h3 className="card-subtitle mb-2 text-muted h6">Homeworld: <Link to={`/planets/${person.homeworld.id}`}>{person.homeworld.name}</Link></h3>
 							{person.films.length > 0 && (
 								<OverviewFilmLinks
 									resourceTitle={'Films'}
 									resourceArray={person.films}
-
 								/>
 							)}
 							{person.starships.length > 0 && (

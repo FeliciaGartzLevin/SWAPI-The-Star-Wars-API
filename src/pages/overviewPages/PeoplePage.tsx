@@ -8,8 +8,7 @@ import Loading from '../../components/Loading.tsx'
 import SearchForm from '../../components/SearchForm.tsx'
 import { useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../../components/ShowAllResourcesBtn.tsx'
-import PersonCard from '../../components/PeopleCards.tsx'
-import PeopleCards from '../../components/PeopleCards.tsx'
+import PeopleCards from '../../components/cards/PeopleCards.tsx'
 
 const PeoplePage = () => {
 	const resourceName = 'people'

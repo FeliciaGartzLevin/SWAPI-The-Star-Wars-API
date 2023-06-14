@@ -8,7 +8,7 @@ import Loading from '../../components/Loading.tsx'
 import SearchForm from '../../components/SearchForm.tsx'
 import { useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../../components/ShowAllResourcesBtn.tsx'
-import FilmsCards from '../../components/cards/FilmsCards.tsx'
+import FilmsCards from '../../components/cards/FilmsCards.js'
 
 const FilmsPage = () => {
 	const resourceName = 'films'

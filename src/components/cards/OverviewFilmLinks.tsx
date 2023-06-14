@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { idTitleContent } from '../types'
+import { idTitleContent } from '../../types'
 
 type IProps = {
 	resourceTitle: string
