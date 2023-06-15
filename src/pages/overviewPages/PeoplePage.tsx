@@ -11,19 +11,17 @@ import ShowAllResourcesBtn from '../../components/ShowAllResourcesBtn.tsx'
 import PeopleCards from '../../components/cards/PeopleCards.tsx'
 
 const PeoplePage = () => {
+	// search params
+	const [searchParams, setSearchParams] = useSearchParams()
+	// get "query=" and "page=" from URL Search Params
+	const query = searchParams.get("query")
+	const pageNumber = Number(searchParams.get("page"))
+	// variables and states
 	const resourceName = 'people'
 	const [people, setPeople] = useState<People | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
-	const [page, setPage] = useState(1)
-	// search params
-	const [searchParams, setSearchParams] = useSearchParams()
-	// get "query=" from URL Search Params
-	const query = searchParams.get("query")
-	// const pageNumber = Number(searchParams.get("page"))
-
-	// console.log('searchParams is: ', searchParams)
-	// console.log('pageNumber is: ', pageNumber)
+	const [page, setPage] = useState(pageNumber === 0 ? 1 : pageNumber)
 
 	// callable function for reset
 	const resetValues = () => {
@@ -63,6 +61,7 @@ const PeoplePage = () => {
 	const queryPeople = async (queryInput: string, page = 1) => {
 		// reset states when search is initialized
 		resetValues()
+		// setSearchParams({ page: String(page) })
 
 		try {
 			const data = await SWAPI.searchResource<People>(resourceName, queryInput, page)
@@ -71,10 +70,8 @@ const PeoplePage = () => {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			setError(error.message)
-
 		}
 		setLoading(false)
-
 	}
 
 	const handleSeeAll = () => {
@@ -84,7 +81,6 @@ const PeoplePage = () => {
 	}
 
 	useEffect(() => {
-		// console.log("'page' is currently: ", page)
 		if (!query) {
 			getPeople(resourceName, page)
 			return

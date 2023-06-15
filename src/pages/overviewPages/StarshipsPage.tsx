@@ -11,15 +11,17 @@ import ShowAllResourcesBtn from '../../components/ShowAllResourcesBtn.tsx'
 import StarshipsCards from '../../components/cards/StarshipsCards.tsx'
 
 const StarshipsPage = () => {
+	// search params
+	const [searchParams, setSearchParams] = useSearchParams()
+	// get "query=" and "page=" from URL Search Params
+	const query = searchParams.get("query")
+	const pageNumber = Number(searchParams.get("page"))
+	// variables and states
 	const resourceName = 'starships'
 	const [starships, setStarships] = useState<Starships | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
-	const [page, setPage] = useState(1)
-	// search params
-	const [searchParams, setSearchParams] = useSearchParams()
-	// get "query=" from URL Search Params
-	const query = searchParams.get("query")
+	const [page, setPage] = useState(pageNumber === 0 ? 1 : pageNumber)
 
 	// callable function for reset
 	const resetValues = () => {

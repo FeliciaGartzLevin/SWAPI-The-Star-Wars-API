@@ -11,15 +11,17 @@ import ShowAllResourcesBtn from '../../components/ShowAllResourcesBtn.tsx'
 import FilmsCards from '../../components/cards/FilmsCards.tsx'
 
 const FilmsPage = () => {
+	// search params
+	const [searchParams, setSearchParams] = useSearchParams()
+	// get "query=" and "page=" from URL Search Params
+	const query = searchParams.get("query")
+	const pageNumber = Number(searchParams.get("page"))
+	// variables and states
 	const resourceName = 'films'
 	const [films, setFilms] = useState<Films | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
-	const [page, setPage] = useState(1)
-	// search params
-	const [searchParams, setSearchParams] = useSearchParams()
-	// get "query=" from URL Search Params
-	const query = searchParams.get("query")
+	const [page, setPage] = useState(pageNumber === 0 ? 1 : pageNumber)
 
 	const resetValues = () => {
 		// reset states
