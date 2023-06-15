@@ -14,12 +14,14 @@ const OverviewLinks: React.FC<IProps> = ({ resourceTitle, resourceArray, endpoin
 			<hr />
 			<h2 className="card-title h3">{resourceTitle}</h2>
 			{
-				resourceArray.map(oneResource => (
+				resourceArray.map((oneResource, index: number) => (
 					<Link
 						key={oneResource.id}
 						to={`/${endpoint ? endpoint : resourceTitle}/${oneResource.id}`}
 						className="d-inline">
-						<span>{oneResource.name}, </span>
+
+						<span>{oneResource.name}</span>
+						{index === resourceArray.length - 1 ? '' : ', '}
 					</Link>
 				))
 			}
