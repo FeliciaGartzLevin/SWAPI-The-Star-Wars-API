@@ -65,6 +65,7 @@ const SpeciesPage = () => {
 		try {
 			const data = await SWAPI.searchResource<AllSpecies>(resourceName, queryInput, page)
 			setSpecies(data)
+			setSearchParams({ query: queryInput, page: String(page) })
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {

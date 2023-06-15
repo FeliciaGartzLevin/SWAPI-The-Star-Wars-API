@@ -65,6 +65,7 @@ const VehiclesPage = () => {
 		try {
 			const data = await SWAPI.searchResource<Vehicles>(resourceName, queryInput, page)
 			setVehicles(data)
+			setSearchParams({ query: queryInput, page: String(page) })
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {

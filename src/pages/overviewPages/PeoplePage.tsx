@@ -41,7 +41,7 @@ const PeoplePage = () => {
 			// call API
 			const res = await SWAPI.getResources<People>(resourceName, page)
 
-			// set person-state to the recieved data
+			// set people-state to the recieved data
 			setPeople(res)
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -61,11 +61,11 @@ const PeoplePage = () => {
 	const queryPeople = async (queryInput: string, page = 1) => {
 		// reset states when search is initialized
 		resetValues()
-		// setSearchParams({ page: String(page) })
 
 		try {
 			const data = await SWAPI.searchResource<People>(resourceName, queryInput, page)
 			setPeople(data)
+			setSearchParams({ query: queryInput, page: String(page) })
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -80,6 +80,11 @@ const PeoplePage = () => {
 		setSearchParams({ page: String(page) })
 	}
 
+	// handle clicking next or prev page
+	const pageSwitcher = (directionNumber: number) => {
+		setPage(prevValue => prevValue + directionNumber)
+	}
+
 	useEffect(() => {
 		if (!query) {
 			getPeople(resourceName, page)
@@ -88,10 +93,6 @@ const PeoplePage = () => {
 		queryPeople(query, page)
 	}, [query, page])
 
-	// handle clicking next or prev page
-	const pageSwitcher = (directionNumber: number) => {
-		setPage(prevValue => prevValue + directionNumber)
-	}
 
 	return (
 		<div id='PeoplePage' className="ResourcesPage info-box">

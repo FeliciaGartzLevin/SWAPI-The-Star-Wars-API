@@ -65,6 +65,8 @@ const PlanetsPage = () => {
 		try {
 			const data = await SWAPI.searchResource<Planets>(resourceName, queryInput, page)
 			setPlanets(data)
+			setSearchParams({ query: queryInput, page: String(page) })
+
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -81,6 +83,11 @@ const PlanetsPage = () => {
 		setSearchParams({ page: String(page) })
 	}
 
+	// handle clicking next or prev page
+	const pageSwitcher = (directionNumber: number) => {
+		setPage(prevValue => prevValue + directionNumber)
+	}
+
 	useEffect(() => {
 		if (!query) {
 			getPlanets(resourceName, page)
@@ -88,11 +95,6 @@ const PlanetsPage = () => {
 		}
 		queryPlanets(query, page)
 	}, [query, page])
-
-	// handle clicking next or prev page
-	const pageSwitcher = (directionNumber: number) => {
-		setPage(prevValue => prevValue + directionNumber)
-	}
 
 	return (
 		<div id='PlanetsPage' className="ResourcesPage info-box">

@@ -65,6 +65,7 @@ const StarshipsPage = () => {
 		try {
 			const data = await SWAPI.searchResource<Starships>(resourceName, queryInput, page)
 			setStarships(data)
+			setSearchParams({ query: queryInput, page: String(page) })
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {

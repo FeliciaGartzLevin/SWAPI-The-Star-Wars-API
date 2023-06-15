@@ -65,6 +65,7 @@ const FilmsPage = () => {
 		try {
 			const data = await SWAPI.searchResource<Films>(resourceName, queryInput, page)
 			setFilms(data)
+			setSearchParams({ query: queryInput, page: String(page) })
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -80,18 +81,18 @@ const FilmsPage = () => {
 		setSearchParams({ page: String(page) })
 	}
 
+	// handle clicking next or prev page
+	const pageSwitcher = (directionNumber: number) => {
+		setPage(prevValue => prevValue + directionNumber)
+	}
+
 	useEffect(() => {
 		if (!query) {
 			getFilms(resourceName, page)
 			return
 		}
 		queryFilms(query, page)
-	}, [query])
-
-	// handle clicking next or prev page
-	const pageSwitcher = (directionNumber: number) => {
-		setPage(prevValue => prevValue + directionNumber)
-	}
+	}, [query, page])
 
 	return (
 		<div id='FilmsPage' className="ResourcesPage info-box">
