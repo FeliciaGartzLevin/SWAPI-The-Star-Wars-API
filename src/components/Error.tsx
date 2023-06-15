@@ -9,25 +9,22 @@ type IProps = {
 
 const Error: React.FC<IProps> = ({ errorMsg }) => {
 	return (
-		<div className="d-flex flex-column justify-content-center">
-			<div id='Error' className='d-flex flex-column'>
-				<img
-					src={StormtrooperNo}
-					alt="Stormtrooper says no"
-					className='img-fluid'
-				/>
-				<Alert
-					variant='danger'
-					className='flex-grow-1'
-				>
-					<strong>Stormtrooper says no</strong>
-					<p>
-						Error Message: "{errorMsg}"
-					</p>
+		<div id='Error' className='d-flex flex-column'>
+			<img
+				src={StormtrooperNo}
+				alt="Stormtrooper says no"
+				className='img-fluid'
+			/>
+			<Alert
+				variant='danger'
+				className='flex-grow-1'
+			>
+				<strong>Stormtrooper says no</strong>
+				<p>
+					Error Message: "{errorMsg}"
+				</p>
 
-				</Alert>
-			</div>
-
+			</Alert>
 		</div>
 	)
 }
