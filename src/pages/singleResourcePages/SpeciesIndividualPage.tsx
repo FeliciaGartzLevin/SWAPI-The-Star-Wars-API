@@ -3,7 +3,7 @@ import * as SWAPI from '../../services/SWAPI.ts'
 import Error from '../../components/Error.tsx'
 import Loading from '../../components/Loading.tsx'
 import { Link, useParams } from 'react-router-dom'
-import { SingleSpecies } from "../../types/index"
+import { SingleSpecies } from "../../types/Species.ts"
 import OverviewLinks from '../../components/cards/OverviewLinks.tsx'
 import OverviewFilmLinks from '../../components/cards/OverviewFilmLinks.tsx'
 

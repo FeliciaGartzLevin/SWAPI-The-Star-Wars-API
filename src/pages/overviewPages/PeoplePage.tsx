@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import * as SWAPI from '../../services/SWAPI.ts'
 import { Alert } from 'react-bootstrap'
-import { People } from '../../types/index'
+import { People } from '../../types/People'
 import PageNavigation from '../../components/PageNavigation.tsx'
 import Error from '../../components/Error.tsx'
 import Loading from '../../components/Loading.tsx'

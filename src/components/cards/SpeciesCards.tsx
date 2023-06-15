@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { OneSpecies } from '../../types'
+import { OneSpecies } from '../../types/Species'
 import Button from 'react-bootstrap/Button'
 
 interface IProps {

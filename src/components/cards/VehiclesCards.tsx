@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Vehicle } from '../../types'
+import { Vehicle } from '../../types/Vehicles'
 import Button from 'react-bootstrap/Button'
 
 interface IProps {

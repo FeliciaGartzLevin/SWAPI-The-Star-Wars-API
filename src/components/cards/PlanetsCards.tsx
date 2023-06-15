@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Planet } from '../../types'
+import { Planet } from '../../types/Planets'
 import Button from 'react-bootstrap/Button'
 
 interface IProps {

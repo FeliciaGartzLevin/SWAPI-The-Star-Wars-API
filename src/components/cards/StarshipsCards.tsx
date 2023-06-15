@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Starship } from '../../types'
+import { Starship } from '../../types/Starships'
 import Button from 'react-bootstrap/Button'
 
 interface IProps {

@@ -2,8 +2,8 @@ import { useState } from 'react'
 import * as SWAPI from '../../services/SWAPI.ts'
 import Error from '../../components/Error.tsx'
 import Loading from '../../components/Loading.tsx'
-import { Link, useParams } from 'react-router-dom'
-import { SingleFilm } from "../../types/index"
+import { useParams } from 'react-router-dom'
+import { SingleFilm } from "../../types/Films"
 import OverviewLinks from '../../components/cards/OverviewLinks.tsx'
 
 

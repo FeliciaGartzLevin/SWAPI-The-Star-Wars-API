@@ -3,7 +3,7 @@ import * as SWAPI from '../../services/SWAPI.ts'
 import Error from '../../components/Error.tsx'
 import Loading from '../../components/Loading.tsx'
 import { useParams } from 'react-router-dom'
-import { SinglePlanet } from "../../types/index"
+import { SinglePlanet } from "../../types/Planets"
 import OverviewLinks from '../../components/cards/OverviewLinks.tsx'
 import OverviewFilmLinks from '../../components/cards/OverviewFilmLinks.tsx'
 
