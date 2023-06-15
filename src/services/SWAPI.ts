@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Films, People, SingleFilm, SinglePerson } from '../types'
 
-const BASE_URL = 'https://swapi.thehiveresistance.com/ai'
+const BASE_URL = 'https://swapi.thehiveresistance.com/api'
 
 /**
  * Generic get request
