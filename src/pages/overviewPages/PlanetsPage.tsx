@@ -20,10 +20,6 @@ const PlanetsPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	// get "query=" from URL Search Params
 	const query = searchParams.get("query")
-	const pageNumber = Number(searchParams.get("page"))
-
-	// console.log('searchParams is: ', searchParams)
-	// console.log('pageNumber is: ', pageNumber)
 
 	// callable function for reset
 	const resetValues = () => {
@@ -84,7 +80,6 @@ const PlanetsPage = () => {
 	}
 
 	useEffect(() => {
-		// console.log("'page' is currently: ", page)
 		if (!query) {
 			getPlanets(resourceName, page)
 			return

@@ -20,7 +20,7 @@ const PeoplePage = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	// get "query=" from URL Search Params
 	const query = searchParams.get("query")
-	const pageNumber = Number(searchParams.get("page"))
+	// const pageNumber = Number(searchParams.get("page"))
 
 	// console.log('searchParams is: ', searchParams)
 	// console.log('pageNumber is: ', pageNumber)
