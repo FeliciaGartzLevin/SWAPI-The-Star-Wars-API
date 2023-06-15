@@ -1,10 +1,7 @@
-import React from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { Link } from 'react-router-dom'
 
-/* type Props = {} */
-
-const ResourcesPage: React.FC = (/* props: Props */) => {
+const ResourcesPage = () => {
 	return (
 		<>
 			<div className="info-box mt-4">
@@ -12,7 +9,6 @@ const ResourcesPage: React.FC = (/* props: Props */) => {
 
 				<p>Click a resource to start searching it</p>
 
-				{/* vid tid: stylea listgroup med annan bakgrundsfärg/bild och hover */}
 				<ListGroup >
 					<ListGroup.Item action as={Link} to="/films">Films</ListGroup.Item>
 					<ListGroup.Item action as={Link} to="/people">Characters</ListGroup.Item>
@@ -21,8 +17,6 @@ const ResourcesPage: React.FC = (/* props: Props */) => {
 					<ListGroup.Item action as={Link} to="/starships">Starships</ListGroup.Item>
 					<ListGroup.Item action as={Link} to="/vehicles">Vehicles</ListGroup.Item>
 				</ListGroup>
-
-
 
 			</div >
 		</>

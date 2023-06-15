@@ -102,6 +102,14 @@ const VehiclesPage = () => {
 
 			<h1>Vehicles</h1>
 
+			{!error && (
+				<div className="d-flex justify-content-center">
+					<SearchForm
+						onSubmit={getQueryInput}
+					/>
+				</div>
+			)}
+
 			{error &&
 				<Error
 					errorMsg={error}
@@ -113,11 +121,6 @@ const VehiclesPage = () => {
 				/>
 			}
 
-			<div className="d-flex justify-content-center">
-				<SearchForm
-					onSubmit={getQueryInput}
-				/>
-			</div>
 
 			{query && <ShowAllResourcesBtn
 				seeAll={handleSeeAll}

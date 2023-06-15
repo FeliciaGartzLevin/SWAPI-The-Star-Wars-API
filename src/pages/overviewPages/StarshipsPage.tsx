@@ -102,6 +102,14 @@ const StarshipsPage = () => {
 
 			<h1>Starships</h1>
 
+			{!error && (
+				<div className="d-flex justify-content-center">
+					<SearchForm
+						onSubmit={getQueryInput}
+					/>
+				</div>
+			)}
+
 			{error &&
 				<Error
 					errorMsg={error}
@@ -112,12 +120,6 @@ const StarshipsPage = () => {
 				<Loading
 				/>
 			}
-
-			<div className="d-flex justify-content-center">
-				<SearchForm
-					onSubmit={getQueryInput}
-				/>
-			</div>
 
 			{query && <ShowAllResourcesBtn
 				seeAll={handleSeeAll}

@@ -113,11 +113,13 @@ const PeoplePage = () => {
 				/>
 			}
 
-			<div className="d-flex justify-content-center">
-				<SearchForm
-					onSubmit={getQueryInput}
-				/>
-			</div>
+			{!error && (
+				<div className="d-flex justify-content-center">
+					<SearchForm
+						onSubmit={getQueryInput}
+					/>
+				</div>
+			)}
 
 			{query && <ShowAllResourcesBtn
 				seeAll={handleSeeAll}

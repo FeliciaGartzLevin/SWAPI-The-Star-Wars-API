@@ -96,6 +96,14 @@ const FilmsPage = () => {
 
 			<h1>Films</h1>
 
+			{!error && (
+				<div className="d-flex justify-content-center">
+					<SearchForm
+						onSubmit={getQueryInput}
+					/>
+				</div>
+			)}
+
 			{error &&
 				<Error
 					errorMsg={error}
@@ -106,13 +114,6 @@ const FilmsPage = () => {
 				<Loading
 				/>
 			}
-
-			<div className="d-flex justify-content-center">
-				<SearchForm
-					onSubmit={getQueryInput}
-				/>
-			</div>
-
 
 			{query && (
 				<ShowAllResourcesBtn

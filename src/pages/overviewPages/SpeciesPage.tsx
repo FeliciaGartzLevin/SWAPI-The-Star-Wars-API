@@ -103,6 +103,14 @@ const SpeciesPage = () => {
 
 			<h1>Species</h1>
 
+			{!error && (
+				<div className="d-flex justify-content-center">
+					<SearchForm
+						onSubmit={getQueryInput}
+					/>
+				</div>
+			)}
+
 			{error &&
 				<Error
 					errorMsg={error}
@@ -113,12 +121,6 @@ const SpeciesPage = () => {
 				<Loading
 				/>
 			}
-
-			<div className="d-flex justify-content-center">
-				<SearchForm
-					onSubmit={getQueryInput}
-				/>
-			</div>
 
 			{query && <ShowAllResourcesBtn
 				seeAll={handleSeeAll}
