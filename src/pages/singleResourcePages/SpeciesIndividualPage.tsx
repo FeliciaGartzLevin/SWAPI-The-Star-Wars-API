@@ -76,7 +76,16 @@ const SpeciesPage = () => {
 							<h3 className="card-subtitle mb-2 text-muted h6">Hair colors: {species.hair_colors}</h3>
 							<h3 className="card-subtitle mb-2 text-muted h6">Skin colors: {species.skin_colors}</h3>
 							<h3 className="card-subtitle mb-2 text-muted h6">Language: {species.language}</h3>
-							<h3 className="card-subtitle mb-2 text-muted h6">Homeworld: <Link to={`/planets/${species.homeworld.id}`}>{species.homeworld.name}</Link></h3>
+							{species.homeworld
+								?
+								(
+									<h3 className="card-subtitle mb-2 text-muted h6">Homeworld: <Link to={`/planets/${species.homeworld.id}`}>{species.homeworld.name}</Link></h3>
+								)
+								:
+								(
+									<h3 className="card-subtitle mb-2 text-muted h6">Homeworld: unknown</h3>
+								)
+							}
 							{species.people.length > 0 && (
 								<OverviewLinks
 									resourceTitle={'People'}

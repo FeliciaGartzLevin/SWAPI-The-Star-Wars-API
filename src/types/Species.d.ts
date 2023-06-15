@@ -51,6 +51,6 @@ export interface SingleSpecies {
 	created: string
 	edited: string
 	people: idNameContent[]
-	homeworld: idNameContent
+	homeworld: idNameContent | null
 	films: idTitleContent[]
 }
