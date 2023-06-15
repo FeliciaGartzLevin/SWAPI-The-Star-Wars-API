@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { Films, People, SingleFilm, SinglePerson } from '../types'
 
 const BASE_URL = 'https://swapi.thehiveresistance.com/api'
 
@@ -10,13 +9,6 @@ export const get = async <T>(endpoint: string) => {
 	const res = await axios.get<T>(BASE_URL + endpoint)
 	return res.data
 }
-
-/**
- * Kom ihåg att lägga till |Planets|People etc i
- * get<Films> när jag lägger till fler resources!!!
- *
- */
-
 
 /**
  * Get all resources
