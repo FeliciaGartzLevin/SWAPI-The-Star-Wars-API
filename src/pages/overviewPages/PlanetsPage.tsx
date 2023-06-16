@@ -96,6 +96,15 @@ const PlanetsPage = () => {
 		queryPlanets(query, page)
 	}, [query, page])
 
+
+	useEffect(() => {
+		const pageNumber = Number(searchParams.get("page"))
+		if (pageNumber === 0) {
+			return
+		}
+		setPage(pageNumber)
+	}, [pageNumber])
+
 	return (
 		<div id='PlanetsPage' className="ResourcesPage info-box">
 

@@ -94,6 +94,15 @@ const FilmsPage = () => {
 		queryFilms(query, page)
 	}, [query, page])
 
+
+	useEffect(() => {
+		const pageNumber = Number(searchParams.get("page"))
+		if (pageNumber === 0) {
+			return
+		}
+		setPage(pageNumber)
+	}, [pageNumber])
+
 	return (
 		<div id='FilmsPage' className="ResourcesPage info-box">
 

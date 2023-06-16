@@ -6,7 +6,7 @@ import PageNavigation from '../../components/PageNavigation.tsx'
 import Error from '../../components/Error.tsx'
 import Loading from '../../components/Loading.tsx'
 import SearchForm from '../../components/SearchForm.tsx'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import ShowAllResourcesBtn from '../../components/ShowAllResourcesBtn.tsx'
 import PeopleCards from '../../components/cards/PeopleCards.tsx'
 
@@ -22,7 +22,6 @@ const PeoplePage = () => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [page, setPage] = useState(pageNumber === 0 ? 1 : pageNumber)
-	// const [lastQueryInput, setLastQueryInput] = useState<string | null>(null)
 
 	// callable function for reset
 	const resetValues = () => {
@@ -37,7 +36,6 @@ const PeoplePage = () => {
 		// reset states when search is initialized
 		resetValues()
 		setSearchParams({ page: String(page) })
-		// setLastQueryInput(null)
 
 		try {
 			// call API
@@ -55,8 +53,6 @@ const PeoplePage = () => {
 	}
 
 	const getQueryInput = (queryInput: string) => {
-		// setting the last query before changing query-param to the new queryInput, so that I can know the difference
-		// setLastQueryInput(query)
 		// set input value as query in searchParams
 		setSearchParams({ query: queryInput, page: String(page) })
 	}
@@ -67,8 +63,6 @@ const PeoplePage = () => {
 		resetValues()
 
 		try {
-			// console.log('lastQueryInput: ', lastQueryInput)
-			console.log('queryInput: ', queryInput)
 
 			const data = await SWAPI.searchResource<People>(resourceName, queryInput, pageNum)
 			setPeople(data)
@@ -93,27 +87,20 @@ const PeoplePage = () => {
 	}
 
 	useEffect(() => {
-		console.log('rendering people')
 		if (!query) {
 			getPeople(resourceName, page)
 			return
 		}
-		/* 	if (lastQueryInput !== null && query !== lastQueryInput) {
-				console.log('Condition "query !== null && query !== lastQueryInput" is true')
-				queryPeople(query, 1)
-				return
-			} */
 		queryPeople(query, page)
 	}, [query, page])
 
-	/* useEffect(() => {
+	useEffect(() => {
 		const pageNumber = Number(searchParams.get("page"))
 		if (pageNumber === 0) {
 			return
 		}
 		setPage(pageNumber)
-
-	}, [location.pathname]) */
+	}, [pageNumber])
 
 	return (
 		<div id='PeoplePage' className="ResourcesPage info-box">

@@ -90,6 +90,14 @@ const SpeciesPage = () => {
 		querySpecies(query, page)
 	}, [query, page])
 
+	useEffect(() => {
+		const pageNumber = Number(searchParams.get("page"))
+		if (pageNumber === 0) {
+			return
+		}
+		setPage(pageNumber)
+	}, [pageNumber])
+
 	// handle clicking next or prev page
 	const pageSwitcher = (directionNumber: number) => {
 		setPage(prevValue => prevValue + directionNumber)
