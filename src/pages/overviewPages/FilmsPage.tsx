@@ -139,6 +139,12 @@ const FilmsPage = () => {
 						<p className='m-0 small'>Showing {films.total} search result for "{query}"</p>
 					)}
 
+					<PageNavigation
+						currentPage={page}
+						maxPage={films.last_page}
+						pageSwitcher={pageSwitcher}
+					/>
+
 					<div className='row'>
 						{films.data.map(film => (
 							<FilmsCards

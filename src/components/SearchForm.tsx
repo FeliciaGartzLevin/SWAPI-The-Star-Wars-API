@@ -18,7 +18,7 @@ const SearchForm: React.FC<IProps> = ({ onSubmit }) => {
 			return
 		}
 
-		// skickar tillbaks till föräldern den queryn som ska göras till API:t
+		// skickar tillbaks till föräldern den query som ska göras till API:t
 		onSubmit(queryInput)
 
 		// clear newTodoTitle state
