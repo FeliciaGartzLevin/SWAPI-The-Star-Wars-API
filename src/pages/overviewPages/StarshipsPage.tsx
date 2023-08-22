@@ -14,14 +14,13 @@ const StarshipsPage = () => {
 	// search params
 	const [searchParams, setSearchParams] = useSearchParams()
 	// get "query=" and "page=" from URL Search Params
-	const query = searchParams.get("query")
-	const pageNumber = Number(searchParams.get("page"))
+	const query = searchParams.get("query") || ''
+	const page = searchParams.get("page") || String(1)
 	// variables and states
 	const resourceName = 'starships'
 	const [starships, setStarships] = useState<Starships | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
-	const [page, setPage] = useState(pageNumber === 0 ? 1 : pageNumber)
 
 	// callable function for reset
 	const resetValues = () => {
@@ -32,10 +31,9 @@ const StarshipsPage = () => {
 	}
 
 	// Get starships from the API
-	const getStarships = async (resourceName: string, page = 1) => {
+	const getStarships = async (resourceName: string, page: string) => {
 		// reset states when search is initialized
 		resetValues()
-		setSearchParams({ page: String(page) })
 
 		try {
 			// call API
@@ -54,18 +52,17 @@ const StarshipsPage = () => {
 
 	const getQueryInput = (queryInput: string) => {
 		// set input value as query in searchParams
-		setSearchParams({ query: queryInput, page: String(page) })
+		setSearchParams({ query: queryInput, page: String(1) })
 	}
 
 	// query the API for starship
-	const queryStarships = async (queryInput: string, page = 1) => {
+	const queryStarships = async (queryInput: string, page: string) => {
 		// reset states when search is initialized
 		resetValues()
 
 		try {
 			const data = await SWAPI.searchResource<Starships>(resourceName, queryInput, page)
 			setStarships(data)
-			setSearchParams({ query: queryInput, page: String(page) })
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -78,8 +75,13 @@ const StarshipsPage = () => {
 
 	const handleSeeAll = () => {
 		// removes the query from searchParams and hence triggers the useEffect below
-		setPage(1)
-		setSearchParams({ page: String(page) })
+		setSearchParams({ query: '', page: String(1) })
+	}
+
+	// handle clicking next or prev page
+	const pageSwitcher = (directionNumber: number) => {
+		const pageNum = Number(page) + directionNumber
+		setSearchParams({ query: query, page: String(pageNum) })
 	}
 
 	useEffect(() => {
@@ -89,20 +91,6 @@ const StarshipsPage = () => {
 		}
 		queryStarships(query, page)
 	}, [query, page])
-
-
-	useEffect(() => {
-		const pageNumber = Number(searchParams.get("page"))
-		if (pageNumber === 0) {
-			return
-		}
-		setPage(pageNumber)
-	}, [pageNumber])
-
-	// handle clicking next or prev page
-	const pageSwitcher = (directionNumber: number) => {
-		setPage(prevValue => prevValue + directionNumber)
-	}
 
 	return (
 		<div id='StarshipsPage' className="ResourcesPage info-box">
@@ -148,7 +136,7 @@ const StarshipsPage = () => {
 					)}
 
 					<PageNavigation
-						currentPage={page}
+						currentPage={Number(page)}
 						maxPage={starships.last_page}
 						pageSwitcher={pageSwitcher}
 					/>
@@ -163,7 +151,7 @@ const StarshipsPage = () => {
 					</div>
 
 					<PageNavigation
-						currentPage={page}
+						currentPage={Number(page)}
 						maxPage={starships.last_page}
 						pageSwitcher={pageSwitcher}
 					/>
