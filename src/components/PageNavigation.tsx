@@ -12,7 +12,7 @@ const PageNavigation: React.FC<IProps> = ({ currentPage, maxPage, pageSwitcher }
 		<div id='PageNavigation' className="d-flex justify-content-between align-items-center my-2 mt-4 ">
 			<div className="prev">
 				<Button
-					disabled={currentPage === 1}
+					disabled={currentPage == 1}
 					onClick={() => pageSwitcher(-1)}
 				>
 					&laquo; Previous

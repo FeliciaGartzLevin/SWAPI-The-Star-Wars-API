@@ -14,14 +14,13 @@ const PeoplePage = () => {
 	// search params
 	const [searchParams, setSearchParams] = useSearchParams()
 	// get "query=" and "page=" from URL Search Params
-	const query = searchParams.get("query")
-	const pageNumber = Number(searchParams.get("page"))
+	const query = searchParams.get("query") || ''
+	const page = searchParams.get("page") || String(1)
 	// variables and state variables
 	const resourceName = 'people'
 	const [people, setPeople] = useState<People | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
-	const [page, setPage] = useState(pageNumber === 0 ? 1 : pageNumber)
 
 	// callable function for reset
 	const resetValues = () => {
@@ -32,10 +31,9 @@ const PeoplePage = () => {
 	}
 
 	// Get people from the API
-	const getPeople = async (resourceName: string, page = 1) => {
+	const getPeople = async (resourceName: string, page: string) => {
 		// reset states when search is initialized
 		resetValues()
-		setSearchParams({ page: String(page) })
 
 		try {
 			// call API
@@ -54,19 +52,19 @@ const PeoplePage = () => {
 
 	const getQueryInput = (queryInput: string) => {
 		// set input value as query in searchParams
-		setSearchParams({ query: queryInput, page: String(page) })
+		setSearchParams({ query: queryInput, page: String(1) })
 	}
 
 	// query the API for person
-	const queryPeople = async (queryInput: string, pageNum = 1) => {
+	const queryPeople = async (queryInput: string, page: string) => {
 		// reset states when search is initialized
 		resetValues()
 
 		try {
 
-			const data = await SWAPI.searchResource<People>(resourceName, queryInput, pageNum)
+			const data = await SWAPI.searchResource<People>(resourceName, queryInput, page)
 			setPeople(data)
-			setSearchParams({ query: queryInput, page: String(pageNum) })
+			// setSearchParams({ query: queryInput, page: page })
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -77,13 +75,13 @@ const PeoplePage = () => {
 
 	const handleSeeAll = () => {
 		// removes the query from searchParams and hence triggers the useEffect below
-		setPage(1)
-		setSearchParams({ page: String(page) })
+		setSearchParams({ page: String(1) })
 	}
 
 	// handle clicking next or prev page
 	const pageSwitcher = (directionNumber: number) => {
-		setPage(prevValue => prevValue + directionNumber)
+		const pageNum = Number(page) + directionNumber
+		setSearchParams({ query: query, page: String(pageNum) })
 	}
 
 	useEffect(() => {
@@ -93,14 +91,6 @@ const PeoplePage = () => {
 		}
 		queryPeople(query, page)
 	}, [query, page])
-
-	useEffect(() => {
-		const pageNumber = Number(searchParams.get("page"))
-		if (pageNumber === 0) {
-			return
-		}
-		setPage(pageNumber)
-	}, [pageNumber])
 
 	return (
 		<div id='PeoplePage' className="ResourcesPage info-box">
@@ -146,7 +136,7 @@ const PeoplePage = () => {
 					)}
 
 					<PageNavigation
-						currentPage={page}
+						currentPage={Number(page)}
 						maxPage={people.last_page}
 						pageSwitcher={pageSwitcher}
 					/>
@@ -160,11 +150,11 @@ const PeoplePage = () => {
 						))}
 					</div>
 
-					<PageNavigation
+					{/* 		<PageNavigation
 						currentPage={page}
 						maxPage={people.last_page}
 						pageSwitcher={pageSwitcher}
-					/>
+					/> */}
 				</>
 			)}
 		</div>

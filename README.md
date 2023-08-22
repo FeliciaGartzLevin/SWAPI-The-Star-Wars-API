@@ -1,5 +1,12 @@
 # Star Wars API (SWAPI) 🌕✨💫👽👩🏽‍🚀🚀🌌🌑
 
+## Använda tekniker:
+- React.js, 
+- React Router, 
+- paginering, 
+- TypeScript, 
+- React-Bootstrap
+
 ## Min design
 Länk till tänkt design i Figma/
 Link to intended design in Figma: https://www.figma.com/file/I5OLfG5HkqEP4JwR9Ol923/SWAPI?type=design&t=T0Q7UJezwatn6Gbj-1 

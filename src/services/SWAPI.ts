@@ -13,7 +13,7 @@ export const get = async <T>(endpoint: string) => {
 /**
  * Get all resources
  */
-export const getResources = async <T>(resource: string, page: number) => {
+export const getResources = async <T>(resource: string, page: string) => {
 	return get<T>(`/${resource}/?page=${page}`)
 }
 
@@ -28,6 +28,6 @@ export const getResource = <T>(resource: string, id: string) => {
 /**
  * Search among resources
  */
-export const searchResource = <T>(resource: string, query: string, page: number) => {
+export const searchResource = <T>(resource: string, query: string, page: string) => {
 	return get<T>(`/${resource}/?search=${query}&page=${page}`)
 }
