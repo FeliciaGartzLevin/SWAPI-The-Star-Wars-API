@@ -14,14 +14,13 @@ const PlanetsPage = () => {
 	// search params
 	const [searchParams, setSearchParams] = useSearchParams()
 	// get "query=" and "page=" from URL Search Params
-	const query = searchParams.get("query")
-	const pageNumber = Number(searchParams.get("page"))
+	const query = searchParams.get("query") || ''
+	const page = searchParams.get("page") || String(1)
 	// variables and states
 	const resourceName = 'planets'
 	const [planets, setPlanets] = useState<Planets | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
-	const [page, setPage] = useState(pageNumber === 0 ? 1 : pageNumber)
 
 	// callable function for reset
 	const resetValues = () => {
@@ -32,10 +31,9 @@ const PlanetsPage = () => {
 	}
 
 	// Get planets from the API
-	const getPlanets = async (resourceName: string, page = 1) => {
+	const getPlanets = async (resourceName: string, page: string) => {
 		// reset states when search is initialized
 		resetValues()
-		setSearchParams({ page: String(page) })
 
 		try {
 			// call API
@@ -54,19 +52,17 @@ const PlanetsPage = () => {
 
 	const getQueryInput = (queryInput: string) => {
 		// set input value as query in searchParams
-		setSearchParams({ query: queryInput, page: String(page) })
+		setSearchParams({ query: queryInput, page: String(1) })
 	}
 
 	// query the API for planet
-	const queryPlanets = async (queryInput: string, page = 1) => {
+	const queryPlanets = async (queryInput: string, page: string) => {
 		// reset states when search is initialized
 		resetValues()
 
 		try {
 			const data = await SWAPI.searchResource<Planets>(resourceName, queryInput, page)
 			setPlanets(data)
-			setSearchParams({ query: queryInput, page: String(page) })
-
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -79,13 +75,13 @@ const PlanetsPage = () => {
 
 	const handleSeeAll = () => {
 		// removes the query from searchParams and hence triggers the useEffect below
-		setPage(1)
-		setSearchParams({ page: String(page) })
+		setSearchParams({ query: '', page: String(1) })
 	}
 
 	// handle clicking next or prev page
 	const pageSwitcher = (directionNumber: number) => {
-		setPage(prevValue => prevValue + directionNumber)
+		const pageNum = Number(page) + directionNumber
+		setSearchParams({ query: query, page: String(pageNum) })
 	}
 
 	useEffect(() => {
@@ -95,15 +91,6 @@ const PlanetsPage = () => {
 		}
 		queryPlanets(query, page)
 	}, [query, page])
-
-
-	useEffect(() => {
-		const pageNumber = Number(searchParams.get("page"))
-		if (pageNumber === 0) {
-			return
-		}
-		setPage(pageNumber)
-	}, [pageNumber])
 
 	return (
 		<div id='PlanetsPage' className="ResourcesPage info-box">
@@ -149,7 +136,7 @@ const PlanetsPage = () => {
 					)}
 
 					<PageNavigation
-						currentPage={page}
+						currentPage={Number(page)}
 						maxPage={planets.last_page}
 						pageSwitcher={pageSwitcher}
 					/>
@@ -164,7 +151,7 @@ const PlanetsPage = () => {
 					</div>
 
 					<PageNavigation
-						currentPage={page}
+						currentPage={Number(page)}
 						maxPage={planets.last_page}
 						pageSwitcher={pageSwitcher}
 					/>

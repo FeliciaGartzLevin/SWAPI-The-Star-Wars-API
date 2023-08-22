@@ -14,14 +14,13 @@ const VehiclesPage = () => {
 	// search params
 	const [searchParams, setSearchParams] = useSearchParams()
 	// get "query=" and "page=" from URL Search Params
-	const query = searchParams.get("query")
-	const pageNumber = Number(searchParams.get("page"))
+	const query = searchParams.get("query") || ''
+	const page = searchParams.get("page") || String(1)
 	// variables and states
 	const resourceName = 'vehicles'
 	const [vehicles, setVehicles] = useState<Vehicles | null>(null)
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
-	const [page, setPage] = useState(pageNumber === 0 ? 1 : pageNumber)
 
 	// callable function for reset
 	const resetValues = () => {
@@ -32,10 +31,9 @@ const VehiclesPage = () => {
 	}
 
 	// Get vehicles from the API
-	const getVehicles = async (resourceName: string, page = 1) => {
+	const getVehicles = async (resourceName: string, page: string) => {
 		// reset states when search is initialized
 		resetValues()
-		setSearchParams({ page: String(page) })
 
 		try {
 			// call API
@@ -54,18 +52,17 @@ const VehiclesPage = () => {
 
 	const getQueryInput = (queryInput: string) => {
 		// set input value as query in searchParams
-		setSearchParams({ query: queryInput, page: String(page) })
+		setSearchParams({ query: queryInput, page: String(1) })
 	}
 
 	// query the API for vehicle
-	const queryVehicles = async (queryInput: string, page = 1) => {
+	const queryVehicles = async (queryInput: string, page: string) => {
 		// reset states when search is initialized
 		resetValues()
 
 		try {
 			const data = await SWAPI.searchResource<Vehicles>(resourceName, queryInput, page)
 			setVehicles(data)
-			setSearchParams({ query: queryInput, page: String(page) })
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -78,8 +75,13 @@ const VehiclesPage = () => {
 
 	const handleSeeAll = () => {
 		// removes the query from searchParams and hence triggers the useEffect below
-		setPage(1)
-		setSearchParams({ page: String(page) })
+		setSearchParams({ query: '', page: String(1) })
+	}
+
+	// handle clicking next or prev page
+	const pageSwitcher = (directionNumber: number) => {
+		const pageNum = Number(page) + directionNumber
+		setSearchParams({ query: query, page: String(pageNum) })
 	}
 
 	useEffect(() => {
@@ -90,19 +92,6 @@ const VehiclesPage = () => {
 		queryVehicles(query, page)
 	}, [query, page])
 
-
-	useEffect(() => {
-		const pageNumber = Number(searchParams.get("page"))
-		if (pageNumber === 0) {
-			return
-		}
-		setPage(pageNumber)
-	}, [pageNumber])
-
-	// handle clicking next or prev page
-	const pageSwitcher = (directionNumber: number) => {
-		setPage(prevValue => prevValue + directionNumber)
-	}
 
 	return (
 		<div id='VehiclesPage' className="ResourcesPage info-box">
@@ -149,7 +138,7 @@ const VehiclesPage = () => {
 					)}
 
 					<PageNavigation
-						currentPage={page}
+						currentPage={Number(page)}
 						maxPage={vehicles.last_page}
 						pageSwitcher={pageSwitcher}
 					/>
@@ -164,7 +153,7 @@ const VehiclesPage = () => {
 					</div>
 
 					<PageNavigation
-						currentPage={page}
+						currentPage={Number(page)}
 						maxPage={vehicles.last_page}
 						pageSwitcher={pageSwitcher}
 					/>
