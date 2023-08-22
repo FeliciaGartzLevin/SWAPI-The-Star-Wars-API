@@ -64,7 +64,6 @@ const PeoplePage = () => {
 
 			const data = await SWAPI.searchResource<People>(resourceName, queryInput, page)
 			setPeople(data)
-			// setSearchParams({ query: queryInput, page: page })
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -75,7 +74,7 @@ const PeoplePage = () => {
 
 	const handleSeeAll = () => {
 		// removes the query from searchParams and hence triggers the useEffect below
-		setSearchParams({ page: String(1) })
+		setSearchParams({ query: '', page: String(1) })
 	}
 
 	// handle clicking next or prev page
@@ -150,11 +149,11 @@ const PeoplePage = () => {
 						))}
 					</div>
 
-					{/* 		<PageNavigation
-						currentPage={page}
+					<PageNavigation
+						currentPage={Number(page)}
 						maxPage={people.last_page}
 						pageSwitcher={pageSwitcher}
-					/> */}
+					/>
 				</>
 			)}
 		</div>
