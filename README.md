@@ -23,8 +23,7 @@ BB-8 har gett dig i uppdrag att göra en StarWars-encyklopedi för att han ska s
 Han vill att hans gäng ska lätt kunna hitta information om allt i Star Wars-universumet. Ditt viktiga uppdrag är att skapa denna encyklopedi och därmed hjälpa bringa fred till galaxen!
  
 ### Presentation
-Se screencast från presentationen av uppgiften, där jag även demonstrerar API:et:
-https://youtu.be/3Bh_d_Sw9Vs.
+Se screencast från presentationen av uppgiften på youtube, där jag även demonstrerar API:et.
 
 Såväl PDF av mina slides och en export av min Postman-collection för API:et finns bifogad längst ner.
 
